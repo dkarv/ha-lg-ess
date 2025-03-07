@@ -128,11 +128,11 @@ async def async_setup_entry(
             EssSensor(system_coordinator, device_info, "pms", "model"),
             EssSensor(system_coordinator, device_info, "pms", "serialno"),
             EssSensor(
-                system_coordinator, device_info, "pms", "ac_input_power"
-            ),  # number
+                system_coordinator, device_info, "pms", "ac_input_power",unit=UnitOfPower.WATT
+            ),
             EssSensor(
-                system_coordinator, device_info, "pms", "ac_output_power"
-            ),  # number
+                system_coordinator, device_info, "pms", "ac_output_power",unit=UnitOfPower.KILOWATT
+            ),
             EssSensor(
                 system_coordinator, device_info, "pms", "install_date", _parse_date
             ),
@@ -166,6 +166,7 @@ async def async_setup_entry(
                 "statistics",
                 "pcs_pv_total_power",
                 icon=_PV,
+                unit=UnitOfPower.WATT,
             ),
             MeasurementSensor(
                 home_coordinator,
@@ -173,6 +174,7 @@ async def async_setup_entry(
                 "statistics",
                 "batconv_power",
                 icon=_BATTERYLOAD,
+                unit=UnitOfPower.WATT,
             ),
             BinarySensor(
                 home_coordinator,
@@ -205,7 +207,7 @@ async def async_setup_entry(
                 UnitOfPower.WATT,
             ),
             MeasurementSensor(
-                home_coordinator, device_info, "statistics", "ac_output_power"
+                home_coordinator, device_info, "statistics", "ac_output_power", unit=UnitOfPower.KILO_WATT
             ),
             MeasurementSensor(
                 home_coordinator, device_info, "statistics", "load_today", icon=_LOAD
@@ -520,7 +522,7 @@ async def async_setup_entry(
                 icon=_CO2,
             ),
             EssSensor(
-                common_coordinator, device_info, "PV", "capacity", icon=_PV
+                common_coordinator, device_info, "PV", "capacity", icon=_PV, unit=UnitOfPower.WATT
             ),  # Wp
             EssSensor(
                 common_coordinator, device_info, "BATT", "status", icon=_BATTERYSTATUS
@@ -619,6 +621,7 @@ class EssSensor(CoordinatorEntity[ESSCoordinator], SensorEntity):
         key: str,
         modify=None,
         icon: str | None = None,
+        unit: str | None = None,
     ) -> None:
         """Initialize the sensor with the common coordinator."""
         super().__init__(coordinator)
@@ -640,6 +643,7 @@ class EssSensor(CoordinatorEntity[ESSCoordinator], SensorEntity):
         self._attr_unique_id = f"${device_info["serial_number"]}_${entity}"
         self._attr_icon = icon
         self.entity_id = f"sensor.${DOMAIN}_${entity}"
+        self._attr_native_unit_of_measurement = unit
 
     @callback
     def _handle_coordinator_update(self) -> None:
@@ -716,8 +720,7 @@ class MeasurementSensor(EssSensor):
         icon: str | None = None,
     ) -> None:
         """Initialize the sensor with the common coordinator."""
-        super().__init__(coordinator, device_info, group, key, modify, icon=icon)
-        self._attr_native_unit_of_measurement = unit
+        super().__init__(coordinator, device_info, group, key, modify, icon=icon, unit=unit)
 
 
 class IncreasingSensor(EssSensor):
@@ -736,8 +739,7 @@ class IncreasingSensor(EssSensor):
         icon: str | None = None,
     ) -> None:
         """Initialize the sensor with the coordinator."""
-        super().__init__(coordinator, device_info, group, key, icon=icon)
-        self._attr_native_unit_of_measurement = unit
+        super().__init__(coordinator, device_info, group, key, icon=icon, unit=unit)
 
 
 class IncreasingEnergySensor(IncreasingSensor):
@@ -779,6 +781,7 @@ class DirectionalPowerSensor(CoordinatorEntity[ESSCoordinator], SensorEntity):
         self._attr_translation_key = key
         self._attr_unique_id = f"${device_info["serial_number"]}_${key}"
         self.entity_id = f"sensor.${DOMAIN}_${key}"
+        self._attr_native_unit_of_measurement = UnitOfPower.WATT
 
     @callback
     def _handle_coordinator_update(self) -> None:
