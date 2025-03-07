@@ -1,21 +1,303 @@
 {
   "config": {
-    "step": {
-      "user": {
-        "data": {
-          "host": "[%key:common::config_flow::data::host%]",
-          "username": "[%key:common::config_flow::data::username%]",
-          "password": "[%key:common::config_flow::data::password%]"
-        }
-      }
+    "abort": {
+      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
     },
     "error": {
       "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
       "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
       "unknown": "[%key:common::config_flow::error::unknown%]"
     },
-    "abort": {
-      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+    "step": {
+      "user": {
+        "data": {
+          "host": "[%key:common::config_flow::data::host%]",
+          "password": "[%key:common::config_flow::data::password%]",
+          "username": "[%key:common::config_flow::data::username%]"
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "batt_backup_setting": {
+        "name": "Battery Backup Setting"
+      },
+      "batt_winter_setting": {
+        "name": "Battery Winter Setting"
+      },
+      "batt_winter_status": {
+        "name": "Battery Winter Status"
+      },
+      "direction_is_battery_charging": {
+        "name": "Battery Is Charging"
+      },
+      "direction_is_battery_discharging": {
+        "name": "Battery Is Discharging"
+      },
+      "direction_is_charging_from_grid": {
+        "name": "Battery Is Charging From Grid"
+      },
+      "direction_is_direct_consuming": {
+        "name": "PV Is Direct Consuming"
+      },
+      "direction_is_discharging_to_grid": {
+        "name": "Battery Is Discharging To Grid"
+      },
+      "direction_is_grid_buying": {
+        "name": "Is Buying From Grid"
+      },
+      "direction_is_grid_selling": {
+        "name": "Is Selling to Grid"
+      },
+      "evcharger_ev_activate": {
+        "name": "EV Charger Is Active"
+      },
+      "heatpump_heatpump_activate": {
+        "name": "Heatpump Is Active"
+      },
+      "heatpump_heatpump_working": {
+        "name": "Heatpump Is Working"
+      },
+      "operation_pcs_standbymode": {
+        "name": "PCS Standby Mode"
+      },
+      "statistics_bat_use": {
+        "name": "Battery In Use"
+      },
+      "wintermode_backup_status": {
+        "name": "Wintermode Backup Status"
+      },
+      "wintermode_winter_status": {
+        "name": "Wintermode Status"
+      }
+    },
+    "sensor": {
+      "backupmode": {
+        "name": "Battery Backup Mode"
+      },
+      "batt_backup_soc": {
+        "name": "Battery Backup SOC"
+      },
+      "batt_capacity": {
+        "name": "Battery Capacity"
+      },
+      "batt_dc_power": {
+        "name": "Battery Power"
+      },
+      "batt_directional": {
+        "name": "Battery Directional Power"
+      },
+      "batt_hbc_cycle_count_1": {
+        "name": "Battery Cycle Count 1"
+      },
+      "batt_hbc_cycle_count_2": {
+        "name": "Battery Cycle Count 2"
+      },
+      "batt_install_date": {
+        "name": "Battery Install Date"
+      },
+      "batt_month_batt_charge_energy": {
+        "name": "Battery Current Month Charged Energy"
+      },
+      "batt_month_batt_discharge_energy": {
+        "name": "Battery Current Month Discharged Energy"
+      },
+      "batt_safety_soc": {
+        "name": "Battery Safety SOC"
+      },
+      "batt_status": {
+        "name": "Battery Status"
+      },
+      "batt_today_batt_charge_energy": {
+        "name": "Battery Today Charged Energy"
+      },
+      "batt_today_batt_discharge_energy": {
+        "name": "Battery Today Discharged Energy"
+      },
+      "batt_type": {
+        "name": "Battery Type"
+      },
+      "evcharger_ev_power": {
+        "name": "EV Charger Power"
+      },
+      "grid_a_phase": {
+        "name": "Grid A Phase"
+      },
+      "grid_active_power": {
+        "name": "Grid Active Power"
+      },
+      "grid_directional": {
+        "name": "Grid Directional Power"
+      },
+      "grid_freq": {
+        "name": "Grid Frequency"
+      },
+      "gridwaitingtime": {
+        "name": "Grid Waiting Time"
+      },
+      "heatpump_current_temp": {
+        "name": "Heatpump Current Temperature"
+      },
+      "heatpump_heatpump_protocol": {
+        "name": "Heatpump Protocol"
+      },
+      "load_load_power": {
+        "name": "Power"
+      },
+      "load_month_grid_power_purchase_energy": {
+        "name": "Current Month Grid Purchased Energy"
+      },
+      "load_month_load_consumption_sum": {
+        "name": "Current Month Consumed Energy"
+      },
+      "load_month_pv_direct_consumption_energy": {
+        "name": "Current Month Direct Consumed Energy"
+      },
+      "load_today_grid_power_purchase_energy": {
+        "name": "Today Grid Purchased Energy"
+      },
+      "load_today_load_consumption_sum": {
+        "name": "Today Consumed Energy"
+      },
+      "load_today_pv_direct_consumption_energy": {
+        "name": "Today Direct Consumed Energy"
+      },
+      "operation_drm_control": {
+        "name": "Operation DRM Control"
+      },
+      "operation_drm_mode0": {
+        "name": "Operation DRM Mode 0"
+      },
+      "operation_remote_mode": {
+        "name": "Operation Remote Mode"
+      },
+      "operation_status": {
+        "name": "Operation Status"
+      },
+      "pcs_fault_pcs_op_status": {
+        "name": "PCS Operation Status"
+      },
+      "pcs_fault_pcs_status": {
+        "name": "PCS Status"
+      },
+      "pcs_feed_in_limitation": {
+        "name": "PCS Feed In Limitation"
+      },
+      "pcs_month_co2_reduction_accum": {
+        "name": "Current Month CO2 Reduction"
+      },
+      "pcs_month_grid_feed_in_energy": {
+        "name": "Current Month Feed In Energy"
+      },
+      "pcs_month_pv_generation_sum": {
+        "name": "Current Month Generated Energy"
+      },
+      "pcs_operation_mode": {
+        "name": "PCS Operation Mode"
+      },
+      "pcs_operation_mode_2": {
+        "name": "PCS Operation Mode 2"
+      },
+      "pcs_pcs_status": {
+        "name": "PCS Status"
+      },
+      "pcs_today_grid_feed_in_energy": {
+        "name": "Today Feed In Energy"
+      },
+      "pcs_today_pv_generation_sum": {
+        "name": "Today Generated Energy"
+      },
+      "pms_ac_input_power": {
+        "name": "PMS AC Input"
+      },
+      "pms_ac_output_power": {
+        "name": "PMS AC Output"
+      },
+      "pms_install_date": {
+        "name": "PMS Install Date"
+      },
+      "pms_model": {
+        "name": "PMS Model"
+      },
+      "pms_serialno": {
+        "name": "PMS Serial No"
+      },
+      "psc_today_self_consumption": {
+        "name": "Today Self Consumption"
+      },
+      "pv_capacity": {
+        "name": "PV Capacity"
+      },
+      "pv_pv1_current": {
+        "name": "PV String 1 Current"
+      },
+      "pv_pv1_power": {
+        "name": "PV String 1 Power"
+      },
+      "pv_pv1_voltage": {
+        "name": "PV String 1 Voltage"
+      },
+      "pv_pv2_current": {
+        "name": "PV String 2 Current"
+      },
+      "pv_pv2_power": {
+        "name": "PV String 2 Power"
+      },
+      "pv_pv2_voltage": {
+        "name": "PV String 2 Voltage"
+      },
+      "pv_pv3_current": {
+        "name": "PV String 3 Current"
+      },
+      "pv_pv3_power": {
+        "name": "PV String 3 Power"
+      },
+      "pv_pv3_voltage": {
+        "name": "PV String 3 Voltage"
+      },
+      "statistics_bat_status": {
+        "name": "Battery Status"
+      },
+      "statistics_bat_user_soc": {
+        "name": "Battery SOC"
+      },
+      "statistics_batconv_power": {
+        "name": "Battery Conv Power"
+      },
+      "statistics_current_day_self_consumption": {
+        "name": "Today Self Consumed Energy"
+      },
+      "statistics_grid_power": {
+        "name": "Grid Power"
+      },
+      "statistics_load_power": {
+        "name": "Load Power"
+      },
+      "statistics_load_today": {
+        "name": "Today Load?"
+      },
+      "statistics_pcs_pv_total_power": {
+        "name": "PV Total Power"
+      },
+      "version_bms_unit1_version": {
+        "name": "BMS Unit 1 Version"
+      },
+      "version_bms_unit2_version": {
+        "name": "BMS Unit 2 Version"
+      },
+      "version_bms_version": {
+        "name": "BMS Version"
+      },
+      "version_pcs_version": {
+        "name": "PCS Version"
+      },
+      "version_pms_build_date": {
+        "name": "PMS Build Date"
+      },
+      "version_pms_version": {
+        "name": "PMS Version"
+      }
     }
   }
 }
