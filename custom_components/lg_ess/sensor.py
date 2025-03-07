@@ -131,7 +131,7 @@ async def async_setup_entry(
                 system_coordinator, device_info, "pms", "ac_input_power",unit=UnitOfPower.WATT
             ),
             EssSensor(
-                system_coordinator, device_info, "pms", "ac_output_power",unit=UnitOfPower.KILOWATT
+                system_coordinator, device_info, "pms", "ac_output_power",unit=UnitOfPower.KILO_WATT
             ),
             EssSensor(
                 system_coordinator, device_info, "pms", "install_date", _parse_date
