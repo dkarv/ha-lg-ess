@@ -97,7 +97,7 @@ async def async_setup_entry(
         serial_number=system_coordinator.data["pms"]["serialno"],
         suggested_area=None,
         sw_version=system_coordinator.data["version"]["pcs_version"],
-        via_device=(DOMAIN, ""),
+        via_device=None,
     )
 
     async_add_entities(

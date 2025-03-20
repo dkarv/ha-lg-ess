@@ -6,7 +6,7 @@ from pyess.aio_ess import ESS, ESSAuthException, ESSException
 import voluptuous as vol
 
 from homeassistant import config_entries
-from homeassistant.components import zeroconf
+from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo
 from homeassistant.config_entries import ConfigFlowResult
 from homeassistant.const import CONF_HOST, CONF_PASSWORD
 from homeassistant.core import HomeAssistant
@@ -31,10 +31,12 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
     Data has the keys from STEP_USER_DATA_SCHEMA with values provided by the user.
     """
 
-    await ESS.create(None, data[CONF_PASSWORD], data[CONF_HOST])
+    ess = await ESS.create(None, data[CONF_PASSWORD], data[CONF_HOST])
+    info = await ess.get_systeminfo()
+    serialno = info["pms"]["serialno"]
 
     # Return info that you want to store in the config entry.
-    return {"title": "LG ESS"}
+    return {"serialno": serialno}
 
 
 class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
@@ -54,8 +56,9 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             try:
                 info = await validate_input(self.hass, user_input)
-                # user_input['serialno'] = info['serialno']
-                return self.async_create_entry(title=info["title"], data=user_input)
+                await self.async_set_unique_id(info['serialno'])
+                user_input['serialno'] = info['serialno']
+                return self.async_create_entry(title=f"LG ESS {info['serialno']}", data=user_input)
             except ESSAuthException:
                 _LOGGER.exception("Wrong password")
                 errors["base"] = "invalid_auth"
@@ -70,15 +73,28 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         return self.async_show_form(step_id="user", data_schema=data, errors=errors)
 
     async def async_step_zeroconf(
-        self, discovery_info: zeroconf.ZeroconfServiceInfo
+        self, discovery_info: ZeroconfServiceInfo
     ) -> ConfigFlowResult:
         """Handle the zeroconf discovery."""
-        host = discovery_info.host
-        _LOGGER.info("Discovered device %s with %s", host, discovery_info)
-        host = discovery_info.host
+        # Search for IPv4 address as there were frequent issues with IPv6
+        ip_address = next((x for x in discovery_info.ip_addresses if x.version == 4), None)
+        if ip_address is None:
+            _LOGGER.warning("No IPv4 address found for %s", discovery_info)
+            self.async_abort(reason="no_ipv4_address")
+        
+        if ip_address.version == 6:
+            host = f"[{ip_address}]"
+        else:
+            host = str(ip_address)
+
+        serialno = discovery_info.hostname.replace(".local.", "")
+
+
+        _LOGGER.info("Discovered device %s with serialno %s and info %s", host, serialno, discovery_info)
         data = {CONF_HOST: host}
-        await self.async_set_unique_id(host)
-        self._abort_if_unique_id_configured(updates=data)
+
+        await self.async_set_unique_id(serialno)
+        self._abort_if_unique_id_configured()
 
         self._async_abort_entries_match(data)
 
