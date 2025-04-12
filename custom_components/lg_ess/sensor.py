@@ -184,7 +184,7 @@ async def async_setup_entry(
                 icon=_BATTERYHOME,
             ),
             # 1: CHARGING, 2: DISCHARGING
-            MeasurementSensor(
+            EssSensor(
                 home_coordinator,
                 device_info,
                 "statistics",
