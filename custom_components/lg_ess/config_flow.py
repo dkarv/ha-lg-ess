@@ -50,11 +50,11 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     VERSION = 2
 
-    async def _handle_user_input(self,
-                                 data: _ess_schema,
-                                 user_input: dict[str, Any] | None = None,
-                                 ) -> ConfigFlowResult:
-        """Handle the user input, either from first setup or reconfiguration."""
+
+    async def async_step_user(
+        self, user_input: dict[str, Any] | None = None
+    ) -> ConfigFlowResult:
+        """Handle the initial step."""
         errors: dict[str, str] = {}
         if user_input is not None:
             try:
@@ -72,29 +72,36 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 _LOGGER.exception("Unexpected exception")
                 errors["base"] = "unknown"
 
-        return self.async_show_form(step_id="user", data_schema=data, errors=errors)
-
-
-    async def async_step_user(
-        self, user_input: dict[str, Any] | None = None
-    ) -> ConfigFlowResult:
-        """Handle the initial step."""
-        return await self._handle_user_input(
-            data = self.discovery_schema or _ess_schema(),
-            user_input = user_input,
-        )
+        return self.async_show_form(step_id="user", data_schema=self.discovery_schema or _ess_schema(), errors=errors)
 
 
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None):
         """Manual reconfiguration to change a setting."""
         current = self._get_reconfigure_entry()
-        return await self._handle_user_input(
-            data = _ess_schema(
+        errors: dict[str, str] = {}
+        if user_input is not None:
+            try:
+                info = await validate_input(self.hass, user_input)
+                await self.async_set_unique_id(info['serialno'])
+                self.hass.config_entries.async_update_entry(current, data=user_input)
+                await self.hass.config_entries.async_reload(current.entry_id)
+                return self.async_abort(reason="reconfiguration_successful")
+                user_input['serialno'] = info['serialno']
+                return self.async_create_entry(title=f"LG ESS {info['serialno']}", data=user_input)
+            except ESSAuthException:
+                _LOGGER.exception("Wrong password")
+                errors["base"] = "invalid_auth"
+            except ESSException:
+                _LOGGER.exception("Generic error setting up the ESS Api")
+                errors["base"] = "unknown"
+            except Exception:  # pylint: disable=broad-except
+                _LOGGER.exception("Unexpected exception")
+                errors["base"] = "unknown"
+
+        return self.async_show_form(step_id="reconfigure", data_schema=_ess_schema(
                 host=current.data[CONF_HOST], 
                 pw=current.data[CONF_PASSWORD],
-            ),
-            user_input = user_input,
-        )
+            ), errors=errors)
 
 
     async def async_step_zeroconf(
