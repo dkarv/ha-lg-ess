@@ -16,11 +16,13 @@ from .const import DOMAIN
 _LOGGER = logging.getLogger(__name__)
 
 
-def _ess_schema(host: str | None = None):
+def _ess_schema(host: str | None = None,
+                pw: str | None = None,
+                ):
     return vol.Schema(
         {
             vol.Required(CONF_HOST, default=host): str,
-            vol.Required(CONF_PASSWORD): str,
+            vol.Required(CONF_PASSWORD, default=pw): str,
         }
     )
 
@@ -48,10 +50,11 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     VERSION = 2
 
-    async def async_step_user(
-        self, user_input: dict[str, Any] | None = None
-    ) -> ConfigFlowResult:
-        """Handle the initial step."""
+    async def _handle_user_input(self,
+                                 data: _ess_schema,
+                                 user_input: dict[str, Any] | None = None,
+                                 ) -> ConfigFlowResult:
+        """Handle the user input, either from first setup or reconfiguration."""
         errors: dict[str, str] = {}
         if user_input is not None:
             try:
@@ -69,8 +72,30 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 _LOGGER.exception("Unexpected exception")
                 errors["base"] = "unknown"
 
-        data = self.discovery_schema or _ess_schema()
         return self.async_show_form(step_id="user", data_schema=data, errors=errors)
+
+
+    async def async_step_user(
+        self, user_input: dict[str, Any] | None = None
+    ) -> ConfigFlowResult:
+        """Handle the initial step."""
+        return await self._handle_user_input(
+            data = self.discovery_schema or _ess_schema(),
+            user_input = user_input,
+        )
+
+
+    async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None):
+        """Manual reconfiguration to change a setting."""
+        current = self._get_reconfigure_entry()
+        return await self._handle_user_input(
+            data = _ess_schema(
+                host=current.data[CONF_HOST], 
+                pw=current.data[CONF_PASSWORD],
+            ),
+            user_input = user_input,
+        )
+
 
     async def async_step_zeroconf(
         self, discovery_info: ZeroconfServiceInfo
@@ -88,7 +113,6 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             host = str(ip_address)
 
         serialno = discovery_info.hostname.replace(".local.", "")
-
 
         _LOGGER.info("Discovered device %s with serialno %s and info %s", host, serialno, discovery_info)
         data = {CONF_HOST: host}
