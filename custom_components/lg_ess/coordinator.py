@@ -68,7 +68,9 @@ class CommonCoordinator(ESSCoordinator):
         )
 
     async def _async_update_data(self):
-        return await self._ess.get_common()
+        data = await self._ess.get_common()
+        _LOGGER.debug("Common data: %s", data)
+        return data
 
 
 class SystemInfoCoordinator(ESSCoordinator):
@@ -93,7 +95,9 @@ class SystemInfoCoordinator(ESSCoordinator):
         )
 
     async def _async_update_data(self):
-        return await self._ess.get_systeminfo()
+        data = await self._ess.get_systeminfo()
+        _LOGGER.debug("System info data: %s", data)
+        return data
 
 
 class HomeCoordinator(ESSCoordinator):
@@ -130,4 +134,6 @@ class HomeCoordinator(ESSCoordinator):
         )
 
     async def _async_update_data(self):
-        return await self._ess.get_home()
+        data = await self._ess.get_home()
+        _LOGGER.debug("Home data: %s", data)
+        return data
