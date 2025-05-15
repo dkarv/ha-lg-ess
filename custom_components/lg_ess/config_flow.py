@@ -1,4 +1,5 @@
 """Config flow for LG ESS integration."""
+
 import logging
 from typing import Any
 
@@ -16,9 +17,10 @@ from .const import DOMAIN
 _LOGGER = logging.getLogger(__name__)
 
 
-def _ess_schema(host: str | None = None,
-                pw: str | None = None,
-                ):
+def _ess_schema(
+    host: str | None = None,
+    pw: str | None = None,
+):
     return vol.Schema(
         {
             vol.Required(CONF_HOST, default=host): str,
@@ -50,7 +52,6 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     VERSION = 2
 
-
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
@@ -59,9 +60,11 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             try:
                 info = await validate_input(self.hass, user_input)
-                await self.async_set_unique_id(info['serialno'])
-                user_input['serialno'] = info['serialno']
-                return self.async_create_entry(title=f"LG ESS {info['serialno']}", data=user_input)
+                await self.async_set_unique_id(info["serialno"])
+                user_input["serialno"] = info["serialno"]
+                return self.async_create_entry(
+                    title=f"LG ESS {info['serialno']}", data=user_input
+                )
             except ESSAuthException:
                 _LOGGER.exception("Wrong password")
                 errors["base"] = "invalid_auth"
@@ -72,8 +75,11 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 _LOGGER.exception("Unexpected exception")
                 errors["base"] = "unknown"
 
-        return self.async_show_form(step_id="user", data_schema=self.discovery_schema or _ess_schema(), errors=errors)
-
+        return self.async_show_form(
+            step_id="user",
+            data_schema=self.discovery_schema or _ess_schema(),
+            errors=errors,
+        )
 
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None):
         """Manual reconfiguration to change a setting."""
@@ -82,12 +88,10 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             try:
                 info = await validate_input(self.hass, user_input)
-                await self.async_set_unique_id(info['serialno'])
+                await self.async_set_unique_id(info["serialno"])
                 self.hass.config_entries.async_update_entry(current, data=user_input)
                 await self.hass.config_entries.async_reload(current.entry_id)
                 return self.async_abort(reason="reconfiguration_successful")
-                user_input['serialno'] = info['serialno']
-                return self.async_create_entry(title=f"LG ESS {info['serialno']}", data=user_input)
             except ESSAuthException:
                 _LOGGER.exception("Wrong password")
                 errors["base"] = "invalid_auth"
@@ -98,22 +102,27 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 _LOGGER.exception("Unexpected exception")
                 errors["base"] = "unknown"
 
-        return self.async_show_form(step_id="reconfigure", data_schema=_ess_schema(
-                host=current.data[CONF_HOST], 
+        return self.async_show_form(
+            step_id="reconfigure",
+            data_schema=_ess_schema(
+                host=current.data[CONF_HOST],
                 pw=current.data[CONF_PASSWORD],
-            ), errors=errors)
-
+            ),
+            errors=errors,
+        )
 
     async def async_step_zeroconf(
         self, discovery_info: ZeroconfServiceInfo
     ) -> ConfigFlowResult:
         """Handle the zeroconf discovery."""
         # Search for IPv4 address as there were frequent issues with IPv6
-        ip_address = next((x for x in discovery_info.ip_addresses if x.version == 4), None)
+        ip_address = next(
+            (x for x in discovery_info.ip_addresses if x.version == 4), None
+        )
         if ip_address is None:
             _LOGGER.warning("No IPv4 address found for %s", discovery_info)
             self.async_abort(reason="no_ipv4_address")
-        
+
         if ip_address.version == 6:
             host = f"[{ip_address}]"
         else:
@@ -121,7 +130,12 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         serialno = discovery_info.hostname.replace(".local.", "")
 
-        _LOGGER.info("Discovered device %s with serialno %s and info %s", host, serialno, discovery_info)
+        _LOGGER.info(
+            "Discovered device %s with serialno %s and info %s",
+            host,
+            serialno,
+            discovery_info,
+        )
         data = {CONF_HOST: host}
 
         await self.async_set_unique_id(serialno)
