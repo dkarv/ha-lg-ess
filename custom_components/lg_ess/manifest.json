@@ -4,13 +4,13 @@
   "codeowners": ["@dkarv"],
   "config_flow": true,
   "dependencies": [],
-  "documentation": "https://github.com/dkarv/hacs-lg-ess/blob/main/README.md",
+  "documentation": "https://github.com/dkarv/ha-lg-ess/blob/main/README.md",
   "homekit": {},
   "integration_type": "device",
   "iot_class": "local_polling",
-  "issue_tracker": "https://github.com/dkarv/hacs-lg-ess/issues",
+  "issue_tracker": "https://github.com/dkarv/ha-lg-ess/issues",
   "requirements": ["pyess==0.1.15"],
   "ssdp": [],
-  "version": "0.3.6",
+  "version": "0.3.7",
   "zeroconf": ["_pmsctrl._tcp.local."]
 }
