@@ -40,8 +40,8 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["statistics", "pcs_pv_total_power"]),
-                lambda: _mul(_get(d,["statistics", "pv_total_power_01kW"]),100),
+                lambda: _get(d, ["statistics", "pcs_pv_total_power"]),
+                lambda: _mul(_get(d, ["statistics", "pv_total_power_01kW"]), 100),
             ),
             "statistics_pcs_pv_total_power",
             icon=_PV,
@@ -51,8 +51,8 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["statistics", "batconv_power"]),
-                lambda: _mul(_get(d,["statistics", "batt_conv_power_01kW"]),100),
+                lambda: _get(d, ["statistics", "batconv_power"]),
+                lambda: _mul(_get(d, ["statistics", "batt_conv_power_01kW"]), 100),
             ),
             "statistics_batconv_power",
             icon=_BATTERYLOAD,
@@ -62,7 +62,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["statistics", "bat_use"]),
+                lambda: _get(d, ["statistics", "bat_use"]),
             ),
             "statistics_bat_use",
             icon=_BATTERYHOME,
@@ -72,7 +72,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["statistics", "bat_status"]),
+                lambda: _get(d, ["statistics", "bat_status"]),
             ),
             "statistics_bat_status",
             icon=_BATTERYSTATUS,
@@ -81,7 +81,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["statistics", "bat_user_soc"]),
+                lambda: _get(d, ["statistics", "bat_user_soc"]),
             ),
             "statistics_bat_user_soc",
             PERCENTAGE,
@@ -91,8 +91,8 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["statistics", "load_power"]),
-                lambda: _mul(_get(d,["statistics", "load_power_01kW"]),100),
+                lambda: _get(d, ["statistics", "load_power"]),
+                lambda: _mul(_get(d, ["statistics", "load_power_01kW"]), 100),
             ),
             "statistics_load_power",
             UnitOfPower.WATT,
@@ -101,8 +101,8 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["statistics", "ac_output_power"]),
-                lambda: _mul(_get(d,["statistics", "ac_active_power_01kW"]),100),
+                lambda: _get(d, ["statistics", "ac_output_power"]),
+                lambda: _mul(_get(d, ["statistics", "ac_active_power_01kW"]), 100),
             ),
             "statistics_ac_output_power",
             unit=UnitOfPower.KILO_WATT,
@@ -111,7 +111,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["statistics", "load_today"]),
+                lambda: _get(d, ["statistics", "load_today"]),
             ),
             "statistics_load_today",
             icon=_LOAD,
@@ -120,8 +120,8 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["statistics", "grid_power"]),
-                lambda: _mul(_get(d,["statistics", "grid_power_01kW"]),100),
+                lambda: _get(d, ["statistics", "grid_power"]),
+                lambda: _mul(_get(d, ["statistics", "grid_power_01kW"]), 100),
             ),
             "statistics_grid_power",
             UnitOfPower.WATT,
@@ -131,7 +131,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["statistics", "current_day_self_consumption"]),
+                lambda: _get(d, ["statistics", "current_day_self_consumption"]),
             ),
             "statistics_current_day_self_consumption",
             PERCENTAGE,
@@ -141,7 +141,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["direction", "is_direct_consuming_"]),
+                lambda: _get(d, ["direction", "is_direct_consuming_"]),
             ),
             "direction_is_direct_consuming_",
             icon=_PV,
@@ -150,7 +150,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["direction", "is_battery_charging_"]),
+                lambda: _get(d, ["direction", "is_battery_charging_"]),
             ),
             "direction_is_battery_charging_",
             icon=_CHARGING,
@@ -159,7 +159,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["direction", "is_battery_discharging_"]),
+                lambda: _get(d, ["direction", "is_battery_discharging_"]),
             ),
             "direction_is_battery_discharging_",
             icon=_DISCHARGING,
@@ -168,7 +168,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["direction", "is_grid_selling_"]),
+                lambda: _get(d, ["direction", "is_grid_selling_"]),
             ),
             "direction_is_grid_selling_",
             icon=_TOGRID,
@@ -177,7 +177,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["direction", "is_grid_buying_"]),
+                lambda: _get(d, ["direction", "is_grid_buying_"]),
             ),
             "direction_is_grid_buying_",
             icon=_FROMGRID,
@@ -186,7 +186,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["direction", "is_charging_from_grid_"]),
+                lambda: _get(d, ["direction", "is_charging_from_grid_"]),
             ),
             "direction_is_charging_from_grid_",
             icon=_CHARGING,
@@ -195,7 +195,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["direction", "is_discharging_to_grid_"]),
+                lambda: _get(d, ["direction", "is_discharging_to_grid_"]),
             ),
             "direction_is_discharging_to_grid_",
             icon=_DISCHARGING,
@@ -204,7 +204,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["operation", "status"]),
+                lambda: _get(d, ["operation", "status"]),
             ),
             "operation_status",
         ),
@@ -212,7 +212,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["operation", "mode"]),
+                lambda: _get(d, ["operation", "mode"]),
             ),
             "operation_mode",
         ),
@@ -220,7 +220,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["operation", "pcs_standbymode"]),
+                lambda: _get(d, ["operation", "pcs_standbymode"]),
             ),
             "operation_pcs_standbymode",
         ),
@@ -228,7 +228,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["operation", "drm_mode0"]),
+                lambda: _get(d, ["operation", "drm_mode0"]),
             ),
             "operation_drm_mode0",
         ),
@@ -236,7 +236,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["operation", "remote_mode"]),
+                lambda: _get(d, ["operation", "remote_mode"]),
             ),
             "operation_remote_mode",
         ),
@@ -244,7 +244,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["operation", "drm_control"]),
+                lambda: _get(d, ["operation", "drm_control"]),
             ),
             "operation_drm_control",
         ),
@@ -252,7 +252,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["wintermode", "winter_status"]),
+                lambda: _get(d, ["wintermode", "winter_status"]),
             ),
             "wintermode_winter_status",
             icon=_WINTER,
@@ -261,7 +261,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["wintermode", "backup_status"]),
+                lambda: _get(d, ["wintermode", "backup_status"]),
             ),
             "wintermode_backup_status",
             icon=_BACKUP,
@@ -270,7 +270,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["pcs_fault", "pcs_status"]),
+                lambda: _get(d, ["pcs_fault", "pcs_status"]),
             ),
             "pcs_fault_pcs_status",
         ),
@@ -278,7 +278,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["pcs_fault", "pcs_op_status"]),
+                lambda: _get(d, ["pcs_fault", "pcs_op_status"]),
             ),
             "pcs_fault_pcs_op_status",
         ),
@@ -286,7 +286,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["heatpump", "heatpump_protocol"]),
+                lambda: _get(d, ["heatpump", "heatpump_protocol"]),
             ),
             "heatpump_heatpump_protocol",
             icon=_HEATPUMP,
@@ -295,7 +295,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["heatpump", "heatpump_activate"]),
+                lambda: _get(d, ["heatpump", "heatpump_activate"]),
             ),
             "heatpump_heatpump_activate",
             icon=_HEATPUMP,
@@ -304,7 +304,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["heatpump", "current_temp"]),
+                lambda: _get(d, ["heatpump", "current_temp"]),
             ),
             "heatpump_current_temp",
             icon=_HEATPUMP,
@@ -313,7 +313,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["heatpump", "heatpump_working"]),
+                lambda: _get(d, ["heatpump", "heatpump_working"]),
             ),
             "heatpump_heatpump_working",
             icon=_HEATPUMP,
@@ -322,7 +322,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["evcharger", "ev_activate"]),
+                lambda: _get(d, ["evcharger", "ev_activate"]),
             ),
             "evcharger_ev_activate",
             icon=_EV,
@@ -331,7 +331,7 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["evcharger", "ev_power"]),
+                lambda: _get(d, ["evcharger", "ev_power"]),
             ),
             "evcharger_ev_power",
             UnitOfPower.WATT,

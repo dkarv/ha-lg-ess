@@ -21,7 +21,7 @@ def get_system_sensors(
             system_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["pms", "model"]),
+                lambda: _get(d, ["pms", "model"]),
             ),
             "pms_model",
         ),
@@ -29,7 +29,7 @@ def get_system_sensors(
             system_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["pms", "serialno"]),
+                lambda: _get(d, ["pms", "serialno"]),
             ),
             "pms_serialno",
         ),
@@ -37,7 +37,7 @@ def get_system_sensors(
             system_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["pms", "ac_input_power"]),
+                lambda: _get(d, ["pms", "ac_input_power"]),
             ),
             "pms_ac_input_power",
             unit=UnitOfPower.WATT,
@@ -46,7 +46,7 @@ def get_system_sensors(
             system_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["pms", "ac_output_power"]),
+                lambda: _get(d, ["pms", "ac_output_power"]),
             ),
             "pms_ac_output_power",
             unit=UnitOfPower.KILO_WATT,
@@ -68,7 +68,7 @@ def get_system_sensors(
             system_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["batt", "type"]),
+                lambda: _get(d, ["batt", "type"]),
             ),
             "batt_type",
         ),
@@ -76,7 +76,7 @@ def get_system_sensors(
             system_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["batt", "hbc_cycle_count_1"]),
+                lambda: _get(d, ["batt", "hbc_cycle_count_1"]),
             ),
             "batt_hbc_cycle_count_1",
         ),
@@ -84,7 +84,7 @@ def get_system_sensors(
             system_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["batt", "hbc_cycle_count_2"]),
+                lambda: _get(d, ["batt", "hbc_cycle_count_2"]),
             ),
             "batt_hbc_cycle_count_2",
         ),
@@ -98,7 +98,7 @@ def get_system_sensors(
             system_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["version", "pms_version"]),
+                lambda: _get(d, ["version", "pms_version"]),
             ),
             "version_pms_version",
         ),
@@ -106,7 +106,7 @@ def get_system_sensors(
             system_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["version", "pms_build_date"]),
+                lambda: _get(d, ["version", "pms_build_date"]),
             ),
             "version_pms_build_date",
         ),
@@ -114,7 +114,7 @@ def get_system_sensors(
             system_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["version", "pcs_version"]),
+                lambda: _get(d, ["version", "pcs_version"]),
             ),
             "version_pcs_version",
         ),
@@ -122,7 +122,7 @@ def get_system_sensors(
             system_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["version", "bms_version"]),
+                lambda: _get(d, ["version", "bms_version"]),
             ),
             "version_bms_version",
         ),
@@ -130,7 +130,7 @@ def get_system_sensors(
             system_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["version", "bms_unit1_version"]),
+                lambda: _get(d, ["version", "bms_unit1_version"]),
             ),
             "version_bms_unit1_version",
         ),
@@ -138,7 +138,7 @@ def get_system_sensors(
             system_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["version", "bms_unit2_version"]),
+                lambda: _get(d, ["version", "bms_unit2_version"]),
             ),
             "version_bms_unit2_version",
         ),

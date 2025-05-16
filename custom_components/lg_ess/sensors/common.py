@@ -43,8 +43,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["BATT", "dc_power"]),
-                lambda: _get(d,["ess", 0, "sum_of_batt_dc_power"]),
+                lambda: _get(d, ["BATT", "dc_power"]),
+                lambda: _get(d, ["ess", 0, "sum_of_batt_dc_power"]),
             ),
             "BATT_dc_power",
             unit=UnitOfPower.WATT,
@@ -54,7 +54,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["LOAD", "load_power"]),
+                lambda: _get(d, ["LOAD", "load_power"]),
             ),
             "LOAD_load_power",
             unit=UnitOfPower.WATT,
@@ -64,7 +64,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PCS", "today_self_consumption"]),
+                lambda: _get(d, ["PCS", "today_self_consumption"]),
             ),
             "PCS_today_self_consumption",
             PERCENTAGE,
@@ -73,7 +73,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["BATT", "today_batt_discharge_enery"]),
+                lambda: _get(d, ["BATT", "today_batt_discharge_enery"]),
             ),
             "BATT_today_batt_discharge_energy",
             icon=_DISCHARGING,
@@ -82,7 +82,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["BATT", "today_batt_charge_energy"]),
+                lambda: _get(d, ["BATT", "today_batt_charge_energy"]),
             ),
             "BATT_today_batt_charge_energy",
             icon=_CHARGING,
@@ -91,7 +91,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["BATT", "month_batt_discharge_energy"]),
+                lambda: _get(d, ["BATT", "month_batt_discharge_energy"]),
             ),
             "BATT_month_batt_discharge_energy",
             icon=_DISCHARGING,
@@ -100,7 +100,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["BATT", "month_batt_charge_energy"]),
+                lambda: _get(d, ["BATT", "month_batt_charge_energy"]),
             ),
             "BATT_month_batt_charge_energy",
             icon=_CHARGING,
@@ -109,7 +109,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["LOAD", "today_load_consumption_sum"]),
+                lambda: _get(d, ["LOAD", "today_load_consumption_sum"]),
             ),
             "LOAD_today_load_consumption_sum",
             icon=_LOAD,
@@ -118,7 +118,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["LOAD", "today_pv_direct_consumption_enegy"]),
+                lambda: _get(d, ["LOAD", "today_pv_direct_consumption_enegy"]),
             ),
             "LOAD_today_pv_direct_consumption_energy",
             icon=_PV,
@@ -127,7 +127,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["LOAD", "today_grid_power_purchase_energy"]),
+                lambda: _get(d, ["LOAD", "today_grid_power_purchase_energy"]),
             ),
             "LOAD_today_grid_power_purchase_energy",
             icon=_FROMGRID,
@@ -136,7 +136,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["LOAD", "month_load_consumption_sum"]),
+                lambda: _get(d, ["LOAD", "month_load_consumption_sum"]),
             ),
             "LOAD_month_load_consumption_sum",
             icon=_LOAD,
@@ -145,7 +145,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["LOAD", "month_pv_direct_consumption_energy"]),
+                lambda: _get(d, ["LOAD", "month_pv_direct_consumption_energy"]),
             ),
             "LOAD_month_pv_direct_consumption_energy",
             icon=_PV,
@@ -154,7 +154,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["LOAD", "month_grid_power_purchase_energy"]),
+                lambda: _get(d, ["LOAD", "month_grid_power_purchase_energy"]),
             ),
             "LOAD_month_grid_power_purchase_energy",
             icon=_FROMGRID,
@@ -163,7 +163,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PCS", "today_pv_generation_sum"]),
+                lambda: _get(d, ["PCS", "today_pv_generation_sum"]),
             ),
             "PCS_today_pv_generation_sum",
             icon=_PV,
@@ -172,7 +172,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PCS", "today_grid_feed_in_energy"]),
+                lambda: _get(d, ["PCS", "today_grid_feed_in_energy"]),
             ),
             "PCS_today_grid_feed_in_energy",
             icon=_TOGRID,
@@ -181,7 +181,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PCS", "month_pv_generation_sum"]),
+                lambda: _get(d, ["PCS", "month_pv_generation_sum"]),
             ),
             "PCS_month_pv_generation_sum",
             icon=_PV,
@@ -190,7 +190,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PCS", "month_grid_feed_in_energy"]),
+                lambda: _get(d, ["PCS", "month_grid_feed_in_energy"]),
             ),
             "PCS_month_grid_feed_in_energy",
             icon=_TOGRID,
@@ -199,8 +199,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PV", "pv1_voltage"]),
-                lambda: _get(d,["ess", 0, "pv", 0,"voltage"]),
+                lambda: _get(d, ["PV", "pv1_voltage"]),
+                lambda: _get(d, ["ess", 0, "pv", 0, "voltage"]),
             ),
             "PV_pv1_voltage",
             UnitOfElectricPotential.VOLT,
@@ -210,8 +210,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PV", "pv2_voltage"]),
-                lambda: _get(d,["ess", 0, "pv", 1,"voltage"]),
+                lambda: _get(d, ["PV", "pv2_voltage"]),
+                lambda: _get(d, ["ess", 0, "pv", 1, "voltage"]),
             ),
             "PV_pv2_voltage",
             UnitOfElectricPotential.VOLT,
@@ -221,8 +221,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PV", "pv3_voltage"]),
-                lambda: _get(d,["ess", 0, "pv", 2,"voltage"]),
+                lambda: _get(d, ["PV", "pv3_voltage"]),
+                lambda: _get(d, ["ess", 0, "pv", 2, "voltage"]),
             ),
             "PV_pv3_voltage",
             UnitOfElectricPotential.VOLT,
@@ -232,8 +232,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PV", "pv1_power"]),
-                lambda: _get(d,["ess", 0, "pv", 0,"power"]),
+                lambda: _get(d, ["PV", "pv1_power"]),
+                lambda: _get(d, ["ess", 0, "pv", 0, "power"]),
             ),
             "PV_pv1_power",
             UnitOfPower.WATT,
@@ -243,8 +243,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PV", "pv2_power"]),
-                lambda: _get(d,["ess", 0, "pv", 1,"power"]),
+                lambda: _get(d, ["PV", "pv2_power"]),
+                lambda: _get(d, ["ess", 0, "pv", 1, "power"]),
             ),
             "PV_pv2_power",
             UnitOfPower.WATT,
@@ -254,8 +254,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PV", "pv3_power"]),
-                lambda: _get(d,["ess", 0, "pv", 2,"power"]),
+                lambda: _get(d, ["PV", "pv3_power"]),
+                lambda: _get(d, ["ess", 0, "pv", 2, "power"]),
             ),
             "PV_pv3_power",
             UnitOfPower.WATT,
@@ -265,8 +265,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PV", "pv1_current"]),
-                lambda: _get(d,["ess", 0, "pv", 0,"current"]),
+                lambda: _get(d, ["PV", "pv1_current"]),
+                lambda: _get(d, ["ess", 0, "pv", 0, "current"]),
             ),
             "PV_pv1_current",
             UnitOfElectricCurrent.AMPERE,
@@ -276,8 +276,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PV", "pv2_current"]),
-                lambda: _get(d,["ess", 0, "pv", 1,"current"]),
+                lambda: _get(d, ["PV", "pv2_current"]),
+                lambda: _get(d, ["ess", 0, "pv", 1, "current"]),
             ),
             "PV_pv2_current",
             UnitOfElectricCurrent.AMPERE,
@@ -287,8 +287,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PV", "pv3_current"]),
-                lambda: _get(d,["ess", 0, "pv", 2,"current"]),
+                lambda: _get(d, ["PV", "pv3_current"]),
+                lambda: _get(d, ["ess", 0, "pv", 2, "current"]),
             ),
             "PV_pv3_current",
             UnitOfElectricCurrent.AMPERE,
@@ -298,7 +298,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PCS", "month_co2_reduction_accum"]),
+                lambda: _get(d, ["PCS", "month_co2_reduction_accum"]),
             ),
             "PCS_month_co2_reduction_accum",
             icon=_CO2,
@@ -307,8 +307,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PV", "capacity"]),
-                lambda: _get(d,["ess", 0, "sum_of_pv_capacity"]),
+                lambda: _get(d, ["PV", "capacity"]),
+                lambda: _get(d, ["ess", 0, "sum_of_pv_capacity"]),
             ),
             "PV_capacity",
             icon=_PV,
@@ -318,7 +318,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["BATT", "status"]),
+                lambda: _get(d, ["BATT", "status"]),
             ),
             "BATT_status",
             icon=_BATTERYSTATUS,
@@ -327,8 +327,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["BATT", "winter_setting"]),
-                lambda: _get(d,["winter_setting"]),
+                lambda: _get(d, ["BATT", "winter_setting"]),
+                lambda: _get(d, ["winter_setting"]),
             ),
             "BATT_winter_setting",
             icon=_WINTER,
@@ -337,8 +337,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["BATT", "winter_status"]),
-                lambda: _get(d,["winter_status"]),
+                lambda: _get(d, ["BATT", "winter_status"]),
+                lambda: _get(d, ["winter_status"]),
             ),
             "BATT_winter_status",
             icon=_WINTER,
@@ -347,7 +347,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["BATT", "safety_soc"]),
+                lambda: _get(d, ["BATT", "safety_soc"]),
             ),
             "BATT_safety_soc",
             PERCENTAGE,
@@ -357,7 +357,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["BATT", "backup_setting"]),
+                lambda: _get(d, ["BATT", "backup_setting"]),
             ),
             "BATT_backup_setting",
             icon=_BACKUP,
@@ -366,7 +366,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["BATT", "backup_status"]),
+                lambda: _get(d, ["BATT", "backup_status"]),
             ),
             "BATT_backup_status",
             icon=_BACKUP,
@@ -375,7 +375,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["BATT", "backup_soc"]),
+                lambda: _get(d, ["BATT", "backup_soc"]),
             ),
             "BATT_backup_soc",
             PERCENTAGE,
@@ -385,8 +385,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["GRID", "active_power"]),
-                lambda: _get(d,["GRID", "total_active_power"]),
+                lambda: _get(d, ["GRID", "active_power"]),
+                lambda: _get(d, ["GRID", "total_active_power"]),
             ),
             "GRID_active_power",
             UnitOfPower.WATT,
@@ -396,7 +396,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["GRID", "a_phase"]),
+                lambda: _get(d, ["GRID", "a_phase"]),
             ),
             "GRID_a_phase",
             UnitOfElectricPotential.VOLT,
@@ -406,7 +406,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["GRID", "freq"]),
+                lambda: _get(d, ["GRID", "freq"]),
             ),
             "GRID_freq",
             UnitOfFrequency.HERTZ,
@@ -416,7 +416,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PCS", "pcs_stauts"]),
+                lambda: _get(d, ["PCS", "pcs_stauts"]),
             ),
             "PCS_pcs_status",
         ),
@@ -424,7 +424,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PCS", "feed_in_limitation"]),
+                lambda: _get(d, ["PCS", "feed_in_limitation"]),
             ),
             "PCS_feed_in_limitation",
             PERCENTAGE,
@@ -434,7 +434,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d,["PCS", "operation_mode"]),
+                lambda: _get(d, ["PCS", "operation_mode"]),
             ),
             "PCS_operation_mode",
         ),
