@@ -1,5 +1,5 @@
 from .base import EssSensor, MeasurementSensor
-from .util import _parse_date
+from .util import _parse_date, _get, _or
 from ..coordinator import (
     SystemInfoCoordinator,
 )
@@ -20,26 +20,34 @@ def get_system_sensors(
         EssSensor(
             system_coordinator,
             device_info,
-            lambda d: d["pms"]["model"],
+            lambda d: _or(
+                lambda: _get(d,["pms", "model"]),
+            ),
             "pms_model",
         ),
         EssSensor(
             system_coordinator,
             device_info,
-            lambda d: d["pms"]["serialno"],
+            lambda d: _or(
+                lambda: _get(d,["pms", "serialno"]),
+            ),
             "pms_serialno",
         ),
         EssSensor(
             system_coordinator,
             device_info,
-            lambda d: d["pms"]["ac_input_power"],
+            lambda d: _or(
+                lambda: _get(d,["pms", "ac_input_power"]),
+            ),
             "pms_ac_input_power",
             unit=UnitOfPower.WATT,
         ),
         EssSensor(
             system_coordinator,
             device_info,
-            lambda d: d["pms"]["ac_output_power"],
+            lambda d: _or(
+                lambda: _get(d,["pms", "ac_output_power"]),
+            ),
             "pms_ac_output_power",
             unit=UnitOfPower.KILO_WATT,
         ),
@@ -59,19 +67,25 @@ def get_system_sensors(
         EssSensor(
             system_coordinator,
             device_info,
-            lambda d: d["batt"]["type"],
+            lambda d: _or(
+                lambda: _get(d,["batt", "type"]),
+            ),
             "batt_type",
         ),
         MeasurementSensor(
             system_coordinator,
             device_info,
-            lambda d: d["batt"]["hbc_cycle_count_1"],
+            lambda d: _or(
+                lambda: _get(d,["batt", "hbc_cycle_count_1"]),
+            ),
             "batt_hbc_cycle_count_1",
         ),
         MeasurementSensor(
             system_coordinator,
             device_info,
-            lambda d: d["batt"]["hbc_cycle_count_2"],
+            lambda d: _or(
+                lambda: _get(d,["batt", "hbc_cycle_count_2"]),
+            ),
             "batt_hbc_cycle_count_2",
         ),
         EssSensor(
@@ -83,37 +97,49 @@ def get_system_sensors(
         EssSensor(
             system_coordinator,
             device_info,
-            lambda d: d["version"]["pms_version"],
+            lambda d: _or(
+                lambda: _get(d,["version", "pms_version"]),
+            ),
             "version_pms_version",
         ),
         EssSensor(
             system_coordinator,
             device_info,
-            lambda d: d["version"]["pms_build_date"],
+            lambda d: _or(
+                lambda: _get(d,["version", "pms_build_date"]),
+            ),
             "version_pms_build_date",
         ),
         EssSensor(
             system_coordinator,
             device_info,
-            lambda d: d["version"]["pcs_version"],
+            lambda d: _or(
+                lambda: _get(d,["version", "pcs_version"]),
+            ),
             "version_pcs_version",
         ),
         EssSensor(
             system_coordinator,
             device_info,
-            lambda d: d["version"]["bms_version"],
+            lambda d: _or(
+                lambda: _get(d,["version", "bms_version"]),
+            ),
             "version_bms_version",
         ),
         EssSensor(
             system_coordinator,
             device_info,
-            lambda d: d["version"]["bms_unit1_version"],
+            lambda d: _or(
+                lambda: _get(d,["version", "bms_unit1_version"]),
+            ),
             "version_bms_unit1_version",
         ),
         EssSensor(
             system_coordinator,
             device_info,
-            lambda d: d["version"]["bms_unit2_version"],
+            lambda d: _or(
+                lambda: _get(d,["version", "bms_unit2_version"]),
+            ),
             "version_bms_unit2_version",
         ),
     ]
