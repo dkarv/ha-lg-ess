@@ -350,7 +350,7 @@ def get_home_sensors(
             "backupmode",
             icon=_BACKUP,
         ),
-        EssSensor(
+        MeasurementSensor(
             home_coordinator,
             device_info,
             lambda d: _calculate_directional(
@@ -360,7 +360,7 @@ def get_home_sensors(
             "batt_directional",
             UnitOfPower.WATT,
         ),
-        EssSensor(
+        MeasurementSensor(
             home_coordinator,
             device_info,
             lambda d: _calculate_directional(
