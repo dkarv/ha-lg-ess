@@ -358,6 +358,7 @@ def get_home_sensors(
                 d["statistics"]["batconv_power"],
             ),
             "batt_directional",
+            UnitOfPower.WATT,
         ),
         EssSensor(
             home_coordinator,
@@ -366,5 +367,6 @@ def get_home_sensors(
                 d["direction"]["is_grid_selling_"], d["statistics"]["grid_power"]
             ),
             "grid_directional",
+            UnitOfPower.WATT,
         ),
     ]

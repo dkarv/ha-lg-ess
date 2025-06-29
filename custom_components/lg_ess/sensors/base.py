@@ -66,6 +66,7 @@ class EssSensor(CoordinatorEntity[ESSCoordinator], SensorEntity):
         self._attr_icon = icon
         self.entity_id = f"sensor.${DOMAIN}_${key}"
         self._attr_native_unit_of_measurement = unit
+        self._attr_native_value = self._extractor(self.coordinator.data)
 
     @callback
     def _handle_coordinator_update(self) -> None:
