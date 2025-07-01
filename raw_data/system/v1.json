@@ -4,14 +4,14 @@
        "serialno":"XXXXXXXXXXXXXXXX",
        "ac_input_power":"13500",
        "ac_output_power":"10",
-       "install_date":"YYYY-MM-DD"
+       "install_date":"2020-02-20"
     },
     "batt":{
        "capacity":"160",
        "type":"hbp",
        "hbc_cycle_count_1":"0",
        "hbc_cycle_count_2":"0",
-       "install_date":"YYYY-MM-DD"
+       "install_date":"2020-02-20"
     },
     "version":{
        "pms_version":"AA.BB.CCCC",
