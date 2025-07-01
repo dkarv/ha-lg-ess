@@ -346,7 +346,10 @@ def get_home_sensors(
         EssSensor(
             home_coordinator,
             device_info,
-            lambda d: d["backupmode"],
+            lambda d: _or(
+                lambda: _get(d, ["backupmode"]),
+                lambda: _get(d, ["operation", "backup_mode"]),
+            ),
             "backupmode",
             icon=_BACKUP,
         ),
@@ -355,7 +358,10 @@ def get_home_sensors(
             device_info,
             lambda d: _calculate_directional(
                 d["direction"]["is_battery_charging_"],
-                d["statistics"]["batconv_power"],
+                _or(
+                    lambda: _get(d, ["statistics", "batconv_power"]),
+                    lambda: _mul(_get(d, ["statistics", "batt_conv_power_01kW"]), 100),
+                ),
             ),
             "batt_directional",
             UnitOfPower.WATT,
@@ -364,7 +370,11 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _calculate_directional(
-                d["direction"]["is_grid_selling_"], d["statistics"]["grid_power"]
+                d["direction"]["is_grid_selling_"], 
+                _or(
+                    lambda: _get(d, ["statistics", "grid_power"]),
+                    lambda: _mul(_get(d, ["statistics", "grid_power_01kW"]), 100),
+                ),
             ),
             "grid_directional",
             UnitOfPower.WATT,
