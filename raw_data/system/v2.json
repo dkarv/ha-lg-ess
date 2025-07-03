@@ -1,0 +1,252 @@
+{
+    "pms": {
+        "model": "XXXXXXXXXXX",
+        "serialno": "XXXXXXXXXXXX",
+        "pv_capacity_power": 19360,
+        "install_date": "2025-04-20"
+    },
+    "version": {
+        "pms_version": "1.1.3451",
+        "pms_certi_version": "01.00",
+        "pms_build_date": "2024-12-10",
+        "lge_app_sw_version": "1.2.1210",
+        "lge_app_fw_version": "LG P21 01.00.01.00 R81 57.24 / 0107,00040005",
+        "pcs_version": "LG P21 01.00.01.00 R81 57.24"
+    },
+    "ess_installed": 1,
+    "ess": [
+        {
+            "installed": true,
+            "model": "D015KE1N212",
+            "ac_output_power": 15000,
+            "pcs_serial_no": "",
+            "sw_version": "LG P21 01.00.01.00 R81 57.24",
+            "ess_serial_no": "407KCDG0UL58",
+            "batt_info": {
+                "install_date": "2025-04-20",
+                "capacity": 15000,
+                "batt": [
+                    {
+                        "installed": true,
+                        "model_name": "BUEL000HBE2KET42J0046",
+                        "model_name_bcu": "BUEL000HBE2",
+                        "sw_version": "0107",
+                        "cycle_count": 33,
+                        "full_charge_capacity": 36900,
+                        "remained_capacity": 38673,
+                        "cycle_count_dup": 33,
+                        "self_discharing_rates": 170,
+                        "pack_serial_manually_entered_v1": "",
+                        "pack_serial_manually_entered_v2_1": "BPLG004HBG1KET2DD1062",
+                        "date_of_manufacture_of_pack1": "2022-12-13",
+                        "pack_serial_manually_entered_v2_2": "BPLG004HBG1KET2DD1061",
+                        "date_of_manufacture_of_pack2": "2022-12-13",
+                        "pack_serial_manually_entered_v2_3": "BPLG004HBG1KET2DD1060",
+                        "date_of_manufacture_of_pack3": "2022-12-13",
+                        "pack_serial_manually_entered_v2_4": "BPLG004HBG1KET2DD1059",
+                        "date_of_manufacture_of_pack4": "2022-12-13",
+                        "barcode": [
+                            "BPLG004HBG1KET2DD1062",
+                            "BPLG004HBG1KET2DD1061",
+                            "BPLG004HBG1KET2DD1060",
+                            "BPLG004HBG1KET2DD1059"
+                        ],
+                        "charged_energy": 607411,
+                        "discharged_energy": 523594,
+                        "total_energy": 1131005,
+                        "charge_capacity_throughput": 14170,
+                        "discharge_capacity_throughput": 12671,
+                        "total_capacity_throughput": 26841,
+                        "deep_discharge_counter": 0,
+                        "over_charge_counter": 0
+                    },
+                    {
+                        "installed": false,
+                        "model_name": "",
+                        "model_name_bcu": "",
+                        "sw_version": "",
+                        "cycle_count": 0,
+                        "full_charge_capacity": 0,
+                        "remained_capacity": 0,
+                        "cycle_count_dup": 0,
+                        "self_discharing_rates": 0,
+                        "pack_serial_manually_entered_v1": "",
+                        "barcode": [],
+                        "charged_energy": 0,
+                        "discharged_energy": 0,
+                        "total_energy": 0,
+                        "charge_capacity_throughput": 0,
+                        "discharge_capacity_throughput": 0,
+                        "total_capacity_throughput": 0,
+                        "deep_discharge_counter": 0,
+                        "over_charge_counter": 0
+                    }
+                ]
+            }
+        },
+        {
+            "installed": false,
+            "model": "D015KE1N212",
+            "ac_output_power": 6000,
+            "pcs_serial_no": "",
+            "sw_version": "",
+            "ess_serial_no": "",
+            "batt_info": {
+                "install_date": "2023-01-01",
+                "capacity": 26726,
+                "batt": [
+                    {
+                        "installed": true,
+                        "model_name": "",
+                        "model_name_bcu": "",
+                        "sw_version": "",
+                        "cycle_count": 0,
+                        "full_charge_capacity": 6866,
+                        "remained_capacity": 9640,
+                        "cycle_count_dup": 0,
+                        "self_discharing_rates": 0,
+                        "pack_serial_manually_entered_v1": "",
+                        "pack_serial_manually_entered_v2_1": "",
+                        "date_of_manufacture_of_pack1": "",
+                        "pack_serial_manually_entered_v2_2": "",
+                        "date_of_manufacture_of_pack2": "",
+                        "pack_serial_manually_entered_v2_3": "",
+                        "date_of_manufacture_of_pack3": "",
+                        "pack_serial_manually_entered_v2_4": "",
+                        "date_of_manufacture_of_pack4": "",
+                        "barcode": [
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        "charged_energy": 6,
+                        "discharged_energy": 64,
+                        "total_energy": 511101108224,
+                        "charge_capacity_throughput": 0,
+                        "discharge_capacity_throughput": 0,
+                        "total_capacity_throughput": 532575944704,
+                        "deep_discharge_counter": 40944,
+                        "over_charge_counter": 400
+                    },
+                    {
+                        "installed": true,
+                        "model_name": "",
+                        "model_name_bcu": "",
+                        "sw_version": "",
+                        "cycle_count": 0,
+                        "full_charge_capacity": 30418,
+                        "remained_capacity": 9,
+                        "cycle_count_dup": 0,
+                        "self_discharing_rates": 49244,
+                        "pack_serial_manually_entered_v1": "",
+                        "pack_serial_manually_entered_v2_1": "",
+                        "date_of_manufacture_of_pack1": "",
+                        "pack_serial_manually_entered_v2_2": "",
+                        "date_of_manufacture_of_pack2": "",
+                        "pack_serial_manually_entered_v2_3": "",
+                        "date_of_manufacture_of_pack3": "",
+                        "pack_serial_manually_entered_v2_4": "",
+                        "date_of_manufacture_of_pack4": "",
+                        "barcode": [
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        "charged_energy": 1995463209,
+                        "discharged_energy": 2127674992,
+                        "total_energy": 26255133,
+                        "charge_capacity_throughput": 2127676240,
+                        "discharge_capacity_throughput": 10,
+                        "total_capacity_throughput": 9138294577871292144,
+                        "deep_discharge_counter": 48888,
+                        "over_charge_counter": 32465
+                    }
+                ]
+            }
+        },
+        {
+            "installed": false,
+            "model": "D015KE1N212",
+            "ac_output_power": 6000,
+            "pcs_serial_no": "",
+            "sw_version": "",
+            "ess_serial_no": "",
+            "batt_info": {
+                "install_date": "2023-01-01",
+                "capacity": 30515,
+                "batt": [
+                    {
+                        "installed": true,
+                        "model_name": "",
+                        "model_name_bcu": "",
+                        "sw_version": "",
+                        "cycle_count": 0,
+                        "full_charge_capacity": 0,
+                        "remained_capacity": 0,
+                        "cycle_count_dup": 0,
+                        "self_discharing_rates": 0,
+                        "pack_serial_manually_entered_v1": "",
+                        "pack_serial_manually_entered_v2_1": "",
+                        "date_of_manufacture_of_pack1": "",
+                        "pack_serial_manually_entered_v2_2": "",
+                        "date_of_manufacture_of_pack2": "",
+                        "pack_serial_manually_entered_v2_3": "",
+                        "date_of_manufacture_of_pack3": "",
+                        "pack_serial_manually_entered_v2_4": "",
+                        "date_of_manufacture_of_pack4": "",
+                        "barcode": [
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        "charged_energy": 2127676536,
+                        "discharged_energy": 1995693088,
+                        "total_energy": 9138301123401451251,
+                        "charge_capacity_throughput": 5130032,
+                        "discharge_capacity_throughput": 2127675200,
+                        "total_capacity_throughput": 22033463529029560,
+                        "deep_discharge_counter": 9616,
+                        "over_charge_counter": 398
+                    },
+                    {
+                        "installed": true,
+                        "model_name": "",
+                        "model_name_bcu": "",
+                        "sw_version": "",
+                        "cycle_count": 0,
+                        "full_charge_capacity": 0,
+                        "remained_capacity": 0,
+                        "cycle_count_dup": 0,
+                        "self_discharing_rates": 16,
+                        "pack_serial_manually_entered_v1": "",
+                        "pack_serial_manually_entered_v2_1": "",
+                        "date_of_manufacture_of_pack1": "",
+                        "pack_serial_manually_entered_v2_2": "",
+                        "date_of_manufacture_of_pack2": "",
+                        "pack_serial_manually_entered_v2_3": "",
+                        "date_of_manufacture_of_pack3": "",
+                        "pack_serial_manually_entered_v2_4": "",
+                        "date_of_manufacture_of_pack4": "",
+                        "barcode": [
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        "charged_energy": 2127676848,
+                        "discharged_energy": 1995693088,
+                        "total_energy": 9138302444261754705,
+                        "charge_capacity_throughput": 0,
+                        "discharge_capacity_throughput": 4294967260,
+                        "total_capacity_throughput": 8553691716631134210,
+                        "deep_discharge_counter": 1512,
+                        "over_charge_counter": 0
+                    }
+                ]
+            }
+        }
+    ]
+}

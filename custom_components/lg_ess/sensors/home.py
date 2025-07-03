@@ -41,7 +41,8 @@ def get_home_sensors(
             device_info,
             lambda d: _or(
                 lambda: _get(d, ["statistics", "pcs_pv_total_power"]),
-                lambda: _mul(_get(d, ["statistics", "pv_total_power_01kW"]), 100),
+                lambda: _mul(
+                    _get(d, ["statistics", "pv_total_power_01kW"]), 100),
             ),
             "statistics_pcs_pv_total_power",
             icon=_PV,
@@ -52,7 +53,8 @@ def get_home_sensors(
             device_info,
             lambda d: _or(
                 lambda: _get(d, ["statistics", "batconv_power"]),
-                lambda: _mul(_get(d, ["statistics", "batt_conv_power_01kW"]), 100),
+                lambda: _mul(
+                    _get(d, ["statistics", "batt_conv_power_01kW"]), 100),
             ),
             "statistics_batconv_power",
             icon=_BATTERYLOAD,
@@ -102,7 +104,8 @@ def get_home_sensors(
             device_info,
             lambda d: _or(
                 lambda: _get(d, ["statistics", "ac_output_power"]),
-                lambda: _mul(_get(d, ["statistics", "ac_active_power_01kW"]), 100),
+                lambda: _mul(
+                    _get(d, ["statistics", "ac_active_power_01kW"]), 100),
             ),
             "statistics_ac_output_power",
             unit=UnitOfPower.KILO_WATT,
@@ -131,7 +134,8 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d, ["statistics", "current_day_self_consumption"]),
+                lambda: _get(
+                    d, ["statistics", "current_day_self_consumption"]),
             ),
             "statistics_current_day_self_consumption",
             PERCENTAGE,
@@ -360,7 +364,8 @@ def get_home_sensors(
                 d["direction"]["is_battery_charging_"],
                 _or(
                     lambda: _get(d, ["statistics", "batconv_power"]),
-                    lambda: _mul(_get(d, ["statistics", "batt_conv_power_01kW"]), 100),
+                    lambda: _mul(
+                        _get(d, ["statistics", "batt_conv_power_01kW"]), 100),
                 ),
             ),
             "batt_directional",
@@ -370,10 +375,11 @@ def get_home_sensors(
             home_coordinator,
             device_info,
             lambda d: _calculate_directional(
-                d["direction"]["is_grid_selling_"], 
+                d["direction"]["is_grid_selling_"],
                 _or(
                     lambda: _get(d, ["statistics", "grid_power"]),
-                    lambda: _mul(_get(d, ["statistics", "grid_power_01kW"]), 100),
+                    lambda: _mul(
+                        _get(d, ["statistics", "grid_power_01kW"]), 100),
                 ),
             ),
             "grid_directional",

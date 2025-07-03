@@ -1,24 +1,24 @@
 {
-    "pms":{
-       "model":"XXXXXXXXXXX",
-       "serialno":"XXXXXXXXXXXXXXXX",
-       "ac_input_power":"13500",
-       "ac_output_power":"10",
-       "install_date":"2020-02-20"
+    "pms": {
+        "model": "XXXXXXXXXXX",
+        "serialno": "XXXXXXXXXXXXXXXX",
+        "ac_input_power": "13500",
+        "ac_output_power": "10",
+        "install_date": "2020-02-20"
     },
-    "batt":{
-       "capacity":"160",
-       "type":"hbp",
-       "hbc_cycle_count_1":"0",
-       "hbc_cycle_count_2":"0",
-       "install_date":"2020-02-20"
+    "batt": {
+        "capacity": "160",
+        "type": "hbp",
+        "hbc_cycle_count_1": "0",
+        "hbc_cycle_count_2": "0",
+        "install_date": "2020-02-20"
     },
-    "version":{
-       "pms_version":"AA.BB.CCCC",
-       "pms_build_date":"YYYY-MM-DD XXXXX",
-       "pcs_version":"LG 05.00.01.00 XXXX A.BBB.C",
-       "bms_version":"BMS 02.03.00.04 / DCDC 16.11.0.0 ",
-       "bms_unit1_version":"BMS 02.03.00.04 / DCDC 16.11.0.0 ",
-       "bms_unit2_version":" "
+    "version": {
+        "pms_version": "AA.BB.CCCC",
+        "pms_build_date": "YYYY-MM-DD XXXXX",
+        "pcs_version": "LG 05.00.01.00 XXXX A.BBB.C",
+        "bms_version": "BMS 02.03.00.04 / DCDC 16.11.0.0 ",
+        "bms_unit1_version": "BMS 02.03.00.04 / DCDC 16.11.0.0 ",
+        "bms_unit2_version": " "
     }
 }

@@ -89,7 +89,8 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             try:
                 info = await validate_input(self.hass, user_input)
                 await self.async_set_unique_id(info["serialno"])
-                self.hass.config_entries.async_update_entry(current, data=user_input)
+                self.hass.config_entries.async_update_entry(
+                    current, data=user_input)
                 await self.hass.config_entries.async_reload(current.entry_id)
                 return self.async_abort(reason="reconfiguration_successful")
             except ESSAuthException:

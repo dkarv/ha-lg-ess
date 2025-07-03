@@ -32,6 +32,16 @@ from homeassistant.const import (
 )
 
 
+def _sum_if_list(value):
+    """
+    If the value is a list, return the sum of its elements.
+    Otherwise, return the value itself.
+    """
+    if isinstance(value, list):
+        return sum(value)
+    return value
+
+
 def get_common_sensors(
     common_coordinator: CommonCoordinator, device_info: DeviceInfo
 ) -> list[EssSensor]:
@@ -145,7 +155,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d, ["LOAD", "month_pv_direct_consumption_energy"]),
+                lambda: _get(
+                    d, ["LOAD", "month_pv_direct_consumption_energy"]),
             ),
             "LOAD_month_pv_direct_consumption_energy",
             icon=_PV,
@@ -385,8 +396,8 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
-                lambda: _get(d, ["GRID", "active_power"]),
-                lambda: _get(d, ["GRID", "total_active_power"]),
+                lambda: _get(d, ["GRID", "total_active_power"]),  # v2
+                lambda: _get(d, ["GRID", "active_power"]),  # v1
             ),
             "GRID_active_power",
             UnitOfPower.WATT,
@@ -395,9 +406,7 @@ def get_common_sensors(
         MeasurementSensor(
             common_coordinator,
             device_info,
-            lambda d: _or(
-                lambda: _get(d, ["GRID", "a_phase"]),
-            ),
+            lambda d: _sum_if_list(_get(d, ["GRID", "a_phase"])),
             "GRID_a_phase",
             UnitOfElectricPotential.VOLT,
             icon=_GRID,
