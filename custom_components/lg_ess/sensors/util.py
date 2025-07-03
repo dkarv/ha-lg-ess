@@ -36,4 +36,4 @@ def _or(option1, option2=None):
 def _mul(op1, op2):
     if (op1 is None) or (op2 is None):
         return None
-    return op1 * op2
+    return int(op1) * int(op2)

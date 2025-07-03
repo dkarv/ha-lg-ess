@@ -17,15 +17,6 @@ def get_system_sensors(
     Returns a list of sensors that use the system_coordinator.
     """
 
-    _parse_date(
-        _or(
-            lambda: _get(system_coordinator.data, [
-                "batt", "install_date"]),
-            lambda: _get(system_coordinator.data, [
-                "ess", 0, "batt_info", "install_date"]),
-        )
-    )
-
     return [
         EssSensor(
             system_coordinator,
@@ -86,13 +77,6 @@ def get_system_sensors(
             device_info,
             lambda d: _get(d, ["ess", 0, "batt_info", "charged_energy"]),
             "0_batt_charged",
-            UnitOfEnergy.WATT_HOUR,
-        ),
-        MeasurementSensor(
-            system_coordinator,
-            device_info,
-            lambda d: _get(d, ["ess", 0, "batt_info", "discharged_energy"]),
-            "0_batt_discharged",
             UnitOfEnergy.WATT_HOUR,
         ),
         MeasurementSensor(
