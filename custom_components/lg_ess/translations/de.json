@@ -19,7 +19,10 @@
         }
     },
     "entity": {
-        "binary_sensor": {
+        "sensor": {
+            "batt_backup_status": {
+                "name": "Battery Backup Status"
+            },
             "batt_backup_setting": {
                 "name": "Batterie Backup Einstellung"
             },
@@ -29,25 +32,25 @@
             "batt_winter_status": {
                 "name": "Batterie Winter Status"
             },
-            "direction_is_battery_charging": {
+            "direction_is_battery_charging_": {
                 "name": "Batterie lädt"
             },
-            "direction_is_battery_discharging": {
+            "direction_is_battery_discharging_": {
                 "name": "Batterie entlädt"
             },
-            "direction_is_charging_from_grid": {
+            "direction_is_charging_from_grid_": {
                 "name": "Batterie lädt aus Netz"
             },
-            "direction_is_direct_consuming": {
+            "direction_is_direct_consuming_": {
                 "name": "PV wird direkt verbraucht"
             },
-            "direction_is_discharging_to_grid": {
+            "direction_is_discharging_to_grid_": {
                 "name": "Batterie entlädt in Netz"
             },
-            "direction_is_grid_buying": {
+            "direction_is_grid_buying_": {
                 "name": "Bezug aus Netz"
             },
-            "direction_is_grid_selling": {
+            "direction_is_grid_selling_": {
                 "name": "Einspeisen in Netz"
             },
             "evcharger_ev_activate": {
@@ -70,9 +73,7 @@
             },
             "wintermode_winter_status": {
                 "name": "Wintermodus Status"
-            }
-        },
-        "sensor": {
+            },
             "backupmode": {
                 "name": "Batterie Backup Modus"
             },
@@ -297,6 +298,21 @@
             },
             "version_pms_version": {
                 "name": "PMS Version"
+            },
+            "statistics_ac_output_power": {
+                "name": "AC Output Power"
+            },
+            "operation_mode": {
+                "name": "Operation Modus"
+            },
+            "pcs_today_self_consumption": {
+                "name": "Heute Selbstverbrauch"
+            },
+            "0_batt_charged": {
+                "name": "Batterie Geladen"
+            },
+            "0_batt_discharged": {
+                "name": "Batterie Entladen"
             }
         }
     }
