@@ -1,87 +1,146 @@
 """Test the LG ESS config flow."""
 import pytest
-from unittest.mock import Mock
+from unittest.mock import Mock, AsyncMock, patch
 from ipaddress import IPv4Address, IPv6Address
 
+from homeassistant.components.zeroconf import ZeroconfServiceInfo
+from homeassistant.core import HomeAssistant
+from homeassistant.config_entries import ConfigFlowResult
 
-def test_ipv6_only_discovery_logic_fixed():
-    """Test that the fix prevents the AttributeError when only IPv6 addresses are present."""
-    # Simulate discovery info with only IPv6 addresses (the problematic case)
-    mock_discovery_info = Mock()
-    mock_discovery_info.ip_addresses = [IPv6Address("2001:db8::1")]
-    mock_discovery_info.hostname = "test-device.local."
-    
-    # This simulates the exact code from config_flow.py lines 120-122
-    ip_address = next(
-        (x for x in mock_discovery_info.ip_addresses if x.version == 4), None
+from custom_components.lg_ess.config_flow import EssConfigFlow
+
+
+@pytest.fixture
+def mock_hass():
+    """Create a mock HomeAssistant instance."""
+    hass = Mock(spec=HomeAssistant)
+    hass.config_entries = Mock()
+    return hass
+
+
+@pytest.fixture
+def config_flow(mock_hass):
+    """Create a config flow instance."""
+    flow = EssConfigFlow()
+    flow.hass = mock_hass
+    return flow
+
+
+@pytest.mark.asyncio
+async def test_zeroconf_ipv6_only_aborts(config_flow):
+    """Test that zeroconf discovery with only IPv6 addresses aborts properly."""
+    # Create discovery info with only IPv6 addresses (the problematic case)
+    discovery_info = ZeroconfServiceInfo(
+        ip_address=IPv6Address("2001:db8::1"),
+        ip_addresses=[IPv6Address("2001:db8::1")],
+        port=443,
+        hostname="test-device.local.",
+        type="_lg-ess._tcp.local.",
+        name="test-device._lg-ess._tcp.local.",
+        properties={}
     )
     
-    # This should be None (no IPv4 addresses found)
-    assert ip_address is None
+    # Call the actual async_step_zeroconf method
+    result = await config_flow.async_step_zeroconf(discovery_info)
     
-    # With the fix: when ip_address is None, we should return early
-    # and NOT try to access ip_address.version 
-    if ip_address is None:
-        # The fixed code should return here, preventing the AttributeError
-        print("Early return - no AttributeError!")
-        return  # This simulates the fixed behavior
+    # Should abort with the correct reason
+    assert result["type"] == "abort"
+    assert result["reason"] == "no_ipv4_address"
+
+
+@pytest.mark.asyncio
+async def test_zeroconf_mixed_addresses_proceeds(config_flow):
+    """Test that zeroconf discovery with both IPv4 and IPv6 addresses proceeds normally."""
+    # Create discovery info with both IPv4 and IPv6 addresses
+    discovery_info = ZeroconfServiceInfo(
+        ip_address=IPv4Address("192.168.1.100"),  # The first non-link-local address
+        ip_addresses=[IPv6Address("2001:db8::1"), IPv4Address("192.168.1.100")],
+        port=443,
+        hostname="test-device.local.",
+        type="_lg-ess._tcp.local.",
+        name="test-device._lg-ess._tcp.local.",
+        properties={}
+    )
+    
+    # Mock the unique ID methods to prevent actual configuration
+    with patch.object(config_flow, 'async_set_unique_id') as mock_set_uid, \
+         patch.object(config_flow, '_abort_if_unique_id_configured') as mock_abort_uid, \
+         patch.object(config_flow, '_async_abort_entries_match') as mock_abort_entries, \
+         patch.object(config_flow, 'async_step_user') as mock_step_user:
         
-    # This code should never be reached after the fix
-    if ip_address.version == 6:
-        host = f"[{ip_address}]"
-    else:
-        host = str(ip_address)
+        mock_step_user.return_value = {"type": "form"}
+        
+        # Call the actual async_step_zeroconf method
+        result = await config_flow.async_step_zeroconf(discovery_info)
+        
+        # Should proceed to user step (form)
+        assert result["type"] == "form"
+        
+        # Verify the expected calls were made
+        mock_set_uid.assert_called_once_with("test-device")
+        mock_abort_uid.assert_called_once()
+        mock_abort_entries.assert_called_once_with({"host": "192.168.1.100"})
+        mock_step_user.assert_called_once()
 
 
-def test_original_bug_demonstration():
-    """Demonstrate the original bug (for documentation purposes)."""
-    # Simulate discovery info with only IPv6 addresses (the problematic case)
-    mock_discovery_info = Mock()
-    mock_discovery_info.ip_addresses = [IPv6Address("2001:db8::1")]
-    mock_discovery_info.hostname = "test-device.local."
-    
-    # This simulates the exact code from config_flow.py lines 120-122
-    ip_address = next(
-        (x for x in mock_discovery_info.ip_addresses if x.version == 4), None
+@pytest.mark.asyncio
+async def test_zeroconf_ipv4_only_proceeds(config_flow):
+    """Test that zeroconf discovery with only IPv4 addresses proceeds normally."""
+    # Create discovery info with only IPv4 addresses
+    discovery_info = ZeroconfServiceInfo(
+        ip_address=IPv4Address("192.168.1.100"),
+        ip_addresses=[IPv4Address("192.168.1.100")],
+        port=443,
+        hostname="test-device.local.",
+        type="_lg-ess._tcp.local.",
+        name="test-device._lg-ess._tcp.local.",
+        properties={}
     )
     
-    # This should be None (no IPv4 addresses found)
-    assert ip_address is None
-    
-    # The bug: In the original code, after ip_address is None,
-    # line 127 tries to access ip_address.version which fails
-    with pytest.raises(AttributeError, match="'NoneType' object has no attribute 'version'"):
-        # This is the buggy line from the original code
-        if ip_address.version == 6:  # This would fail
-            host = f"[{ip_address}]"
-        else:
-            host = str(ip_address)
+    # Mock the unique ID methods to prevent actual configuration
+    with patch.object(config_flow, 'async_set_unique_id') as mock_set_uid, \
+         patch.object(config_flow, '_abort_if_unique_id_configured') as mock_abort_uid, \
+         patch.object(config_flow, '_async_abort_entries_match') as mock_abort_entries, \
+         patch.object(config_flow, 'async_step_user') as mock_step_user:
+        
+        mock_step_user.return_value = {"type": "form"}
+        
+        # Call the actual async_step_zeroconf method  
+        result = await config_flow.async_step_zeroconf(discovery_info)
+        
+        # Should proceed to user step (form)
+        assert result["type"] == "form"
+        
+        # Verify the expected calls were made
+        mock_set_uid.assert_called_once_with("test-device")
+        mock_abort_uid.assert_called_once()
+        mock_abort_entries.assert_called_once_with({"host": "192.168.1.100"})
+        mock_step_user.assert_called_once()
 
 
-def test_ipv4_found_discovery_logic():
-    """Test discovery logic with IPv4 address found (should work correctly)."""
-    # Create mock discovery info with both IPv6 and IPv4 addresses
-    mock_discovery_info = Mock()
-    mock_discovery_info.ip_addresses = [
-        IPv6Address("2001:db8::1"), 
-        IPv4Address("192.168.1.100")
-    ]
-    mock_discovery_info.hostname = "test-device.local."
+@pytest.mark.asyncio
+async def test_zeroconf_no_attribute_error_with_fix():
+    """Test that the fix prevents AttributeError when only IPv6 addresses are present."""
+    # This test verifies that the specific bug (AttributeError accessing .version on None) 
+    # does not occur with the fix in place. Since the method now returns early when 
+    # ip_address is None, the problematic line should never be reached.
     
-    # Test the IPv4 address filtering logic
-    ip_address = next(
-        (x for x in mock_discovery_info.ip_addresses if x.version == 4), None
+    config_flow = EssConfigFlow()
+    config_flow.hass = Mock(spec=HomeAssistant)
+    
+    discovery_info = ZeroconfServiceInfo(
+        ip_address=IPv6Address("2001:db8::1"),
+        ip_addresses=[IPv6Address("2001:db8::1")],
+        port=443,
+        hostname="test-device.local.",
+        type="_lg-ess._tcp.local.",
+        name="test-device._lg-ess._tcp.local.",
+        properties={}
     )
     
-    # This should find the IPv4 address
-    assert ip_address is not None
-    assert ip_address.version == 4
-    assert str(ip_address) == "192.168.1.100"
+    # This should not raise AttributeError anymore
+    result = await config_flow.async_step_zeroconf(discovery_info)
     
-    # This should work without error (the current working case)
-    if ip_address.version == 6:
-        host = f"[{ip_address}]"
-    else:
-        host = str(ip_address)
-    
-    assert host == "192.168.1.100"
+    # Should abort gracefully without AttributeError
+    assert result["type"] == "abort"
+    assert result["reason"] == "no_ipv4_address"
