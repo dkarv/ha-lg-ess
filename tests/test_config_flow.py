@@ -3,7 +3,7 @@ import pytest
 from unittest.mock import Mock, AsyncMock, patch
 from ipaddress import IPv4Address, IPv6Address
 
-from homeassistant.components.zeroconf import ZeroconfServiceInfo
+from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo
 from homeassistant.core import HomeAssistant
 from homeassistant.config_entries import ConfigFlowResult
 
