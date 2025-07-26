@@ -2,3 +2,4 @@ homeassistant
 pyess
 mock
 pytest
+pytest-asyncio
