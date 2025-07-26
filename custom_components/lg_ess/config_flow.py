@@ -122,7 +122,7 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         )
         if ip_address is None:
             _LOGGER.warning("No IPv4 address found for %s", discovery_info)
-            self.async_abort(reason="no_ipv4_address")
+            return self.async_abort(reason="no_ipv4_address")
 
         if ip_address.version == 6:
             host = f"[{ip_address}]"
