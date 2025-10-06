@@ -13,11 +13,11 @@ from .utils import assert_sensor_values, mock_device_info, list_files
 
 def mock_coordinator(data):
     hass = Mock()
-    # no_ldap.return_value = Mock(search_s=search_s)
+    config_entry = Mock()
 
     class MockHomeCoordinator(HomeCoordinator):
         def __init__(self, hass, data):
-            super().__init__(hass, None)
+            super().__init__(hass, None, config_entry)
             self.data = data
 
     return MockHomeCoordinator(hass, data)

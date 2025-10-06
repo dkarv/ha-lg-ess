@@ -31,9 +31,9 @@ async def async_setup_entry(
 ) -> None:
     """Set up sensors from config entry."""
     ess = hass.data[DOMAIN][config_entry.entry_id]
-    common_coordinator = CommonCoordinator(hass, ess)
-    system_coordinator = SystemInfoCoordinator(hass, ess)
-    home_coordinator = HomeCoordinator(hass, ess)
+    common_coordinator = CommonCoordinator(hass, ess, config_entry)
+    system_coordinator = SystemInfoCoordinator(hass, ess, config_entry)
+    home_coordinator = HomeCoordinator(hass, ess, config_entry)
 
     # Fetch initial data so we have data when entities subscribe
     #
