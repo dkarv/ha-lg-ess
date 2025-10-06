@@ -11,6 +11,6 @@
   "issue_tracker": "https://github.com/dkarv/ha-lg-ess/issues",
   "requirements": ["pyess==0.1.15"],
   "ssdp": [],
-  "version": "0.3.11",
+  "version": "0.3.12",
   "zeroconf": ["_pmsctrl._tcp.local."]
 }
