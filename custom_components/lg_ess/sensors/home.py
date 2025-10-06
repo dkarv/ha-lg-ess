@@ -344,7 +344,7 @@ def get_home_sensors(
         MeasurementSensor(
             home_coordinator,
             device_info,
-            lambda d: d["gridWaitingTime"],
+            lambda d: _get(d, ["gridWaitingTime"]),
             "gridWaitingTime",
         ),
         EssSensor(
