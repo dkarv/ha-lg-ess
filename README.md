@@ -3,7 +3,7 @@ HomeAssistant HACS integration for the LG ESS inverter.
 Built with the Python library https://github.com/gluap/pyess (thanks!).
 
 # Installation
-Add _dkarv/ha-lg-ess_ as custom repository in HACS (in the three dots menu).
+Add _dkarv/ha-lg-ess_ as custom repository in HACS (click the three dots on the top right).
 
 Then search for the integration or use the button below to install it:
 
