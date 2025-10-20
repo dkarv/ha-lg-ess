@@ -2,6 +2,11 @@
 HomeAssistant HACS integration for the LG ESS inverter.
 Built with the Python library https://github.com/gluap/pyess (thanks!).
 
+# Installation
+Add _dkarv/ha-lg-ess_ as custom repository in HACS (in the three dots menu).
+
+Then search for the integration or use the button below to install it:
+
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=dkarv&repository=ha-lg-ess)
 
 
