@@ -9,11 +9,12 @@ from homeassistant.const import CONF_HOST, CONF_PASSWORD, Platform
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.entity_registry import async_migrate_entries
+from .ess import EssBase
 
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
-PLATFORMS: list[Platform] = [Platform.SENSOR]
+PLATFORMS: list[Platform] = [Platform.SENSOR, Platform.SWITCH]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
@@ -23,7 +24,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     try:
         ess = await ESS.create(None, entry.data["password"], entry.data["host"])
-        hass.data[DOMAIN][entry.entry_id] = ess
+        base = EssBase(hass, ess, entry)
+        await base.first_refresh()
+        hass.data[DOMAIN][entry.entry_id] = base
     except ESSException as e:
         _LOGGER.exception("Error setting up ESS api")
         raise ConfigEntryNotReady from e
@@ -36,8 +39,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload a config entry."""
     if unload_ok := await hass.config_entries.async_unload_platforms(entry, PLATFORMS):
-        api = hass.data[DOMAIN].pop(entry.entry_id)
-        await api.destruct()
+        base = hass.data[DOMAIN].pop(entry.entry_id)
+        await base.close()
 
     return unload_ok
 

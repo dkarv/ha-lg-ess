@@ -71,7 +71,7 @@ class SystemInfoCoordinator(ESSCoordinator):
 
 
 class HomeCoordinator(ESSCoordinator):
-    """LG ESS system info coordinator."""
+    """LG ESS home coordinator."""
 
     def __init__(self, hass: HomeAssistant, ess: ESS, config_entry: ConfigEntry) -> None:
         """Initialize my coordinator."""
@@ -87,3 +87,27 @@ class HomeCoordinator(ESSCoordinator):
         data = await self._ess.get_home()
         _LOGGER.debug("Home data: %s", data)
         return data
+
+
+class SettingsCoordinator(ESSCoordinator):
+    """LG ESS settings coordinator."""
+
+    def __init__(self, hass: HomeAssistant, ess: ESS, config_entry: ConfigEntry) -> None:
+        """Initialize my coordinator."""
+        super().__init__(
+            hass,
+            ess,
+            config_entry=config_entry,
+            name="LG ESS settings",
+            interval=timedelta(minutes=5),
+        )
+
+    async def _async_update_data(self):
+        data = await self._ess.get_batt_settings()
+        _LOGGER.debug("Settings data: %s", data)
+        return data
+    
+    async def update_settings(self, new_settings: dict) -> None:
+        """Update battery settings."""
+        await self._ess.set_batt_settings(new_settings)
+        await self.async_refresh()

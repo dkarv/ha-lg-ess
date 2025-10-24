@@ -19,6 +19,31 @@
         }
     },
     "entity": {
+        "switch": {
+            "winter_setting": {
+                "name": "Winter Einstellung"
+            },
+            "winter_status": {
+                "name": "Winter Status"
+            },
+            "backup_setting": {
+                "name": "Backup Einstellung"
+            },
+            "backup_status": {
+                "name": "Backup Status"
+            },
+            "auto_charge": {
+                "name": "Auto Laden"
+            }
+        },
+        "number": {
+            "safety_soc": {
+                "name": "Sicherheit SOC"
+            },
+            "backup_soc": {
+                "name": "Backup SOC"
+            }
+        },
         "sensor": {
             "batt_backup_status": {
                 "name": "Battery Backup Status"
