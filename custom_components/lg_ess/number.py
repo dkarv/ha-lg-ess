@@ -36,12 +36,12 @@ async def async_setup_entry(
 
 
 class EssNumber(EssEntity, CoordinatorEntity[SettingsCoordinator], NumberEntity):
-    """Switch entity that reflects a setting from the SettingsCoordinator."""
+    """Number entity that reflects a setting from the SettingsCoordinator."""
 
     def __init__(self, ess: EssBase, key: str):
-        """Initialize the EssSwitch."""
+        """Initialize the EssNumber."""
         super().__init__(ess.settings_coordinator, ess.device_info, lambda d: _get_int(d, [key]), key)
-        self.entity_id = f"switch.${DOMAIN}_${key}"
+        self.entity_id = f"number.${DOMAIN}_${key}"
         self._ess = ess
         self._key = key
         self._attr_native_min_value = 0

@@ -46,7 +46,7 @@ def _get_bool(d, keys: list):
     if val == "on" or val == "1":
         return True
     if val == "off" or val == "0":
-        return 
+        return False
     if val is not None:
         _LOGGER.warning(f"Unexpected boolean value: {val} for keys: {keys}")
     return None
