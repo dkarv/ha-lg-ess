@@ -1,5 +1,7 @@
 from datetime import date, datetime
 
+import logging
+_LOGGER = logging.getLogger(__name__)
 
 def _calculate_directional(direction: str, value: str) -> float:
     """Calculate the directional value based on the direction."""
@@ -37,3 +39,20 @@ def _mul(op1, op2):
     if (op1 is None) or (op2 is None):
         return None
     return int(op1) * int(op2)
+
+
+def _get_bool(d, keys: list):
+    val = _get(d, keys)
+    if val == "on" or val == "1":
+        return True
+    if val == "off" or val == "0":
+        return False
+    if val is not None:
+        _LOGGER.warning(f"Unexpected boolean value: {val} for keys: {keys}")
+    return None
+
+def _get_int(d, keys: list):
+    val = _get(d, keys)
+    if val is not None:
+        return int(val)
+    return None

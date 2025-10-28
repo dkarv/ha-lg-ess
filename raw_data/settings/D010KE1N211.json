@@ -1,0 +1,16 @@
+{
+    "winter_setting": "off",
+    "winter_status": "off",
+    "backup_setting": "off",
+    "backup_status": "off",
+    "alg_setting": "battery_care",
+    "safety_soc": "10",
+    "charging_from_grid_to_keep_soc": "1",
+    "backup_soc": "30",
+    "startdate": "1101",
+    "stopdate": "0228",
+    "auto_charge": "on",
+    "internet_connection": "connected",
+    "enervu_activated": "true",
+    "enervu_upload": "on"
+}
