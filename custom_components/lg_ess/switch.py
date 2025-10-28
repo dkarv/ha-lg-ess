@@ -28,14 +28,20 @@ async def async_setup_entry(
     await base.first_refresh()
 
     async_add_entities([
-        EssSwitch(base, "winter_setting"),
-        EssSwitch(base, "winter_status"),
-        EssSwitch(base, "backup_setting"),
-        EssSwitch(base, "backup_status"),
+        # TODO startdate / stopdate
+        # 1101
+        # 0228
+
+        EssSwitch(base, "winter_setting", "wintermode"),
+        # TODO make boolean entity
+        # EssSwitch(base, "winter_status"),
+        EssSwitch(base, "backup_setting", "backupmode"),
+        # TODO make boolean entity
+        # EssSwitch(base, "backup_status"),
 
         # TODO Known values:
-        # - battery_care
-        # EssSwitch(base, "alg_setting"),
+        # - battery_care / 1
+        # EssSwitch(base, "alg_setting", "alg_setting"),
 
         # TODO Known values:
         # - 1
@@ -47,7 +53,7 @@ async def async_setup_entry(
         # EssSwitch(base, "startdate"),
         # EssSwitch(base, "stopdate"),
 
-        EssSwitch(base, "auto_charge"),
+        EssSwitch(base, "auto_charge", "autocharge", ["1", "0"]),
 
         # TODO known values:
         # - 'connected'
@@ -60,12 +66,14 @@ async def async_setup_entry(
 class EssSwitch(EssEntity, CoordinatorEntity[SettingsCoordinator], SwitchEntity):
     """Switch entity that reflects a setting from the SettingsCoordinator."""
 
-    def __init__(self, ess: EssBase, key: str):
+    def __init__(self, ess: EssBase, key: str, set_key: str, set_val: list = ["on", "off"]):
         """Initialize the EssSwitch."""
         super().__init__(ess.settings_coordinator, ess.device_info, lambda d: _get_bool(d, [key]), key)
         self.entity_id = f"switch.${DOMAIN}_${key}"
         self._ess = ess
         self._key = key
+        self._set_key = set_key
+        self._set_val = set_val
         self._attr_is_on = self._extractor(self.coordinator.data)
     
     @callback
@@ -75,7 +83,9 @@ class EssSwitch(EssEntity, CoordinatorEntity[SettingsCoordinator], SwitchEntity)
         self.async_write_ha_state()
 
     async def async_turn_on(self, **kwargs) -> None:
-        await self._ess.ess.set_batt_settings({self._key: "on"})
+        await self._ess.ess.set_batt_settings({self._set_key: self._set_val[0]})
+        await self.coordinator.async_request_refresh()
 
     async def async_turn_off(self, **kwargs) -> None:
-        await self._ess.ess.set_batt_settings({self._key: "off"})
+        await self._ess.ess.set_batt_settings({self._set_key: self._set_val[1]})
+        await self.coordinator.async_request_refresh()

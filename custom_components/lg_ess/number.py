@@ -47,13 +47,14 @@ class EssNumber(EssEntity, CoordinatorEntity[SettingsCoordinator], NumberEntity)
         self._attr_native_min_value = 0
         self._attr_native_max_value = 100
         self._attr_native_step = 1
-        self._attr_value = self._extractor(self.coordinator.data)
+        self._attr_native_value = self._extractor(self.coordinator.data)
     
     @callback
     def _handle_coordinator_update(self) -> None:
         """Handle updated data from the coordinator."""
-        self._attr_value = self._extractor(self.coordinator.data)
+        self._attr_native_value = self._extractor(self.coordinator.data)
         self.async_write_ha_state()
     
     async def async_set_native_value(self, value: float) -> None:
         await self._ess.ess.set_batt_settings({self._key: int(value)})
+        await self.coordinator.async_request_refresh()
