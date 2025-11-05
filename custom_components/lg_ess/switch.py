@@ -28,32 +28,16 @@ async def async_setup_entry(
     await base.first_refresh()
 
     async_add_entities([
-        # TODO startdate / stopdate
-        # 1101
-        # 0228
-
         EssSwitch(base, "winter_setting", "wintermode"),
-        # TODO make boolean entity
-        # EssSwitch(base, "winter_status"),
-        EssSwitch(base, "backup_setting", "backupmode"),
-        # TODO make boolean entity
-        # EssSwitch(base, "backup_status"),
+        EssSwitch(base, "auto_charge", "autocharge", ["1", "0"]),
 
-        # TODO Known values:
-        # - battery_care / 1
-        # EssSwitch(base, "alg_setting", "alg_setting"),
-
-        # TODO Known values:
-        # - 1
-        # EssSwitch(base, "charging_from_grid_to_keep_soc"),
-
-        # TODO Known values:
+        # TODO make DateEntity
+        # Known values:
         # - '1101'
         # - '0228'
         # EssSwitch(base, "startdate"),
         # EssSwitch(base, "stopdate"),
 
-        EssSwitch(base, "auto_charge", "autocharge", ["1", "0"]),
 
         # TODO known values:
         # - 'connected'
