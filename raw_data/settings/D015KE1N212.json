@@ -1,0 +1,13 @@
+{
+    "winter_setting": "off",
+    "winter_soc": 10,
+    "backup_setting": "simple",
+    "reserved_soc": 10,
+    "backup_installer_setting": 2,
+    "startdate": "1101",
+    "stopdate": "0228",
+    "alg_setting": "fast_charge",
+    "charge_from_grid_winter_and_backup_enabled": "on",
+    "internet_connection": "internet_connected",
+    "thinq_registered": 1
+}

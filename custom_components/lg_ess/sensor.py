@@ -27,4 +27,13 @@ async def async_setup_entry(
         get_home_sensors(base.home_coordinator, base.device_info)
         + get_common_sensors(base.common_coordinator, base.device_info)
         + get_system_sensors(base.system_coordinator, base.device_info)
+        # TODO implement
+        # winter_status
+        # backup_status
+        # charging_from_grid_to_keep_soc
+        # internet_connection
+        # enervu_activated
+        # enervu_upload
+        # thinq_registered
+        # + get_settings_sensors(base.settings_coordinator, base.device_info)
     )

@@ -46,6 +46,6 @@ jobs:
         with:
           tag_name: "v${{ steps.manifest.outputs.version }}"
           generate_release_notes: true
-          prerelease: ${{ steps.check_tag.outputs.is_beta == 'true' }}
+          prerelease: ${{ steps.manifest.outputs.is_beta == 'true' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

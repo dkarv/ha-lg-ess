@@ -21,19 +21,33 @@
     "entity": {
         "switch": {
             "winter_setting": {
-                "name": "Winter Einstellung"
+                "name": "Winter Modus"
             },
             "winter_status": {
                 "name": "Winter Status"
-            },
-            "backup_setting": {
-                "name": "Backup Einstellung"
             },
             "backup_status": {
                 "name": "Backup Status"
             },
             "auto_charge": {
-                "name": "Auto Laden"
+                "name": "Automatisch Laden"
+            }
+        },
+        "select": {
+            "backup_setting": {
+                "name": "Backup Modus",
+                "state": {
+                    "on": "Aktiv",
+                    "off": "Inaktiv",
+                    "simple": "Einfach (nicht verfügbar bei allen Modellen)"
+                }
+            },
+            "alg_setting": {
+                "name": "Algorithmus",
+                "state": {
+                    "fast_charge": "Schnellladen",
+                    "battery_care": "Batteriepflege"
+                }
             }
         },
         "number": {
