@@ -29,10 +29,19 @@
         },
         "select": {
             "backup_setting": {
-                "name": "Backup Mode"
+                "name": "Backup Mode",
+                "state": {
+                    "on": "Enabled",
+                    "off": "Disabled",
+                    "simple": "Simple (not available on all models)"
+                }
             },
             "alg_setting": {
-                "name": "Algorithm"
+                "name": "Algorithm",
+                "state": {
+                    "fast_charge": "Fast Charge",
+                    "battery_care": "Battery Care"
+                }
             }
         },
         "number": {

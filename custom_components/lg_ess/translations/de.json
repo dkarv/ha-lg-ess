@@ -35,10 +35,19 @@
         },
         "select": {
             "backup_setting": {
-                "name": "Backup Modus"
+                "name": "Backup Modus",
+                "state": {
+                    "on": "Aktiv",
+                    "off": "Inaktiv",
+                    "simple": "Einfach (nicht verfügbar bei allen Modellen)"
+                }
             },
             "alg_setting": {
-                "name": "Algorithmus"
+                "name": "Algorithmus",
+                "state": {
+                    "fast_charge": "Schnellladen",
+                    "battery_care": "Batteriepflege"
+                }
             }
         },
         "number": {
