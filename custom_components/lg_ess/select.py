@@ -50,12 +50,12 @@ class EssSelect(EssEntity, CoordinatorEntity[SettingsCoordinator], SelectEntity)
         self._get_val = get_val
         self._set_val = set_val if set_val is not None else {v: v for v in get_val}
         self._attr_options = get_val
-        self._attr_current_option = _get(self._set_val, self._extractor(self.coordinator.data))
+        self._attr_current_option = self._extractor(self.coordinator.data)
     
     @callback
     def _handle_coordinator_update(self) -> None:
         """Handle updated data from the coordinator."""
-        self._attr_current_option = _get(self._set_val, self._extractor(self.coordinator.data))
+        self._attr_current_option = self._extractor(self.coordinator.data)
         self.async_write_ha_state()
     
     async def async_select_option(self, option: str) -> None:

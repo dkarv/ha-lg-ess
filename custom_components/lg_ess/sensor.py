@@ -34,5 +34,6 @@ async def async_setup_entry(
         # internet_connection
         # enervu_activated
         # enervu_upload
+        # thinq_registered
         # + get_settings_sensors(base.settings_coordinator, base.device_info)
     )

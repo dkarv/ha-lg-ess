@@ -21,19 +21,18 @@
     "entity": {
         "switch": {
             "winter_setting": {
-                "name": "Winter Setting"
-            },
-            "winter_status": {
-                "name": "Winter Status"
-            },
-            "backup_setting": {
-                "name": "Backup Setting"
-            },
-            "backup_status": {
-                "name": "Backup Status"
+                "name": "Winter Mode"
             },
             "auto_charge": {
-                "name": "Auto Charge"
+                "name": "Automatic Charging"
+            }
+        },
+        "select": {
+            "backup_setting": {
+                "name": "Backup Mode"
+            },
+            "alg_setting": {
+                "name": "Algorithm"
             }
         },
         "number": {
