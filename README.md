@@ -18,7 +18,7 @@ The integration can be configured easily through the UI after getting the passwo
 
 You need the local device password, __which is not the account password__. Instead there are a few ways to get it:
 
-1. Get the mac address of the lg ess and convert it. Mac address AA:BB:CC:DD:11:22 -> password aabbccdd1122
+1. Get the mac address of the LAN interface of the lg ess device. Password is the lowercase address without colons. Example: AA:BB:CC:DD:11:22 -> password aabbccdd1122
 2. Extract it using the pyess library (it has a cli) __while connected to the devices WiFi__.
 3. Do a post request, e.g. with curl __while connected to the devices WiFi__:
 ```
