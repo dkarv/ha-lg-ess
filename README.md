@@ -22,7 +22,7 @@ You need the local device password, __which is not the account password__. Inste
 2. Extract it using the pyess library (it has a cli) __while connected to the devices WiFi__.
 3. Do a post request, e.g. with curl __while connected to the devices WiFi__:
 ```
-curl --insecure -H "Charset:UTF-8" -H "Content-Type:application/json" https://10.10.1.98/v1/user/setting/read/password -d '{"key": "lgepmsuser!@#}'
+curl --insecure -H "Charset:UTF-8" -H "Content-Type:application/json" https://192.168.23.1/v1/user/setting/read/password -d '{"key": "lgepmsuser!@#}'
 ```
 
 
