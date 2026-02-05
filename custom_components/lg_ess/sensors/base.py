@@ -62,7 +62,7 @@ class EssEntity(CoordinatorEntity[ESSCoordinator], Entity):
         self._extractor = extractor
         self._attr_translation_key = key.lower()
         self._attr_has_entity_name = True
-        self._attr_unique_id = f"${device_info["serial_number"]}_${key}"
+        self._attr_unique_id = f"{device_info["serial_number"]}_{key}".lower()
         self._attr_icon = icon
         self._attr_native_unit_of_measurement = unit
 
@@ -80,7 +80,7 @@ class EssSensor(EssEntity, CoordinatorEntity[ESSCoordinator], SensorEntity):
     ) -> None:
         """Initialize the sensor with the common coordinator."""
         EssEntity.__init__(self, coordinator, device_info, extractor, key, icon=icon, unit=unit)
-        self.entity_id = f"sensor.${DOMAIN}_${key}"
+        self.entity_id = f"sensor.{DOMAIN}_{key}".lower()
         self._attr_native_value = self._extractor(self.coordinator.data)
 
     @callback
@@ -109,7 +109,7 @@ class BinarySensor(EssEntity, CoordinatorEntity[ESSCoordinator], BinarySensorEnt
     ) -> None:
         """Initialize the sensor with the coordinator."""
         EssEntity.__init__(self, coordinator, device_info, extractor, key, icon=icon)
-        self.entity_id = f"binary_sensor.${DOMAIN}_${key}"
+        self.entity_id = f"binary_sensor.{DOMAIN}_{key}".lower()
         self.is_on = _convert_bool(extractor(coordinator.data))
 
     @callback

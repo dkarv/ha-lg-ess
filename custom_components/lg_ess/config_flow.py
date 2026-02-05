@@ -50,7 +50,7 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         """Initialize the ESS config flow."""
         self.discovery_schema: vol.Schema | None = None
 
-    VERSION = 2
+    VERSION = 3
 
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
