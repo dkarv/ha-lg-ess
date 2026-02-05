@@ -9,6 +9,7 @@ from homeassistant.const import CONF_HOST, CONF_PASSWORD, Platform
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.entity_registry import async_migrate_entries
+from homeassistant.helpers import entity_registry as er
 from .ess import EssBase
 
 from .const import DOMAIN
@@ -61,6 +62,37 @@ async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
         await async_migrate_entries(hass, entry.entry_id, update_unique_id)
         hass.config_entries.async_update_entry(entry, version=2)
+
+    
+    # Fix entity ids
+    if entry.version == 2:
+        # Remove dollar signs from entity IDs for entities created by this config entry
+        registry = er.async_get(hass)
+
+        for entity in list(registry.entities.values()):
+            # Only operate on entities that belong to this config entry
+            if entity.config_entry_id != entry.entry_id:
+                continue
+
+            if "$" not in entity.entity_id and \
+                not any(map(str.isupper(), entity.entity_id)) and \
+                "$" not in entity.unique_id and \
+                not any(map(str.isupper(), entity.unique_id)):
+                continue
+
+            new_entity_id = entity.entity_id.replace("$", "").lower()
+            new_unique_id = entity.unique_id.replace("$", "").lower()
+            try:
+                registry.async_update_entity(entity.entity_id, new_entity_id=new_entity_id, new_unique_id=new_unique_id)
+                _LOGGER.info("Renamed entity %s -> %s", entity.entity_id, new_entity_id)
+            except ValueError as exc:
+                _LOGGER.warning(
+                    "Could not rename entity %s -> %s: %s",
+                    entity.entity_id,
+                    new_entity_id,
+                    exc,
+                )
+        hass.config_entries.async_update_entry(entry, version=3)
 
     _LOGGER.info("Migration to version %s successful", entry.version)
 

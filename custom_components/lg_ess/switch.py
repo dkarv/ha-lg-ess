@@ -53,7 +53,7 @@ class EssSwitch(EssEntity, CoordinatorEntity[SettingsCoordinator], SwitchEntity)
     def __init__(self, ess: EssBase, key: str, set_key: str, set_val: list = ["on", "off"]):
         """Initialize the EssSwitch."""
         super().__init__(ess.settings_coordinator, ess.device_info, lambda d: _get_bool(d, [key]), key)
-        self.entity_id = f"switch.${DOMAIN}_${key}"
+        self.entity_id = f"switch.{DOMAIN}_{key}".lower()
         self._ess = ess
         self._key = key
         self._set_key = set_key

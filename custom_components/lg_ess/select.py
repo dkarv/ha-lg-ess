@@ -43,7 +43,7 @@ class EssSelect(EssEntity, CoordinatorEntity[SettingsCoordinator], SelectEntity)
         """Initialize the EssSelect."""
         super().__init__(ess.settings_coordinator, ess.device_info, lambda d: _get(d, [key]), key)
 
-        self.entity_id = f"select.${DOMAIN}_${key}"
+        self.entity_id = f"select.{DOMAIN}_{key}".lower()
         self._ess = ess
         self._key = key
         self._set_key = set_key
