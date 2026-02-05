@@ -75,9 +75,9 @@ async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
                 continue
 
             if "$" not in entity.entity_id and \
-                not any(map(str.isupper(), entity.entity_id)) and \
+                not any(map(str.isupper, entity.entity_id)) and \
                 "$" not in entity.unique_id and \
-                not any(map(str.isupper(), entity.unique_id)):
+                not any(map(str.isupper, entity.unique_id)):
                 continue
 
             new_entity_id = entity.entity_id.replace("$", "").lower()
@@ -85,11 +85,18 @@ async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             try:
                 registry.async_update_entity(entity.entity_id, new_entity_id=new_entity_id, new_unique_id=new_unique_id)
                 _LOGGER.info("Renamed entity %s -> %s", entity.entity_id, new_entity_id)
+                _LOGGER.info("Renamed unique id %s -> %s", entity.unique_id, new_unique_id)
             except ValueError as exc:
                 _LOGGER.warning(
                     "Could not rename entity %s -> %s: %s",
                     entity.entity_id,
                     new_entity_id,
+                    exc,
+                )
+                _LOGGER.warning(
+                    "Could not rename unique id %s -> %s: %s",
+                    entity.unique_id,
+                    new_unique_id,
                     exc,
                 )
         hass.config_entries.async_update_entry(entry, version=3)
