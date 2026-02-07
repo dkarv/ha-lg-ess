@@ -12,7 +12,7 @@ def _calculate_directional(direction: str, value: str) -> float:
 
 
 def _parse_date(raw_input: str) -> date:
-    print(f"Parsing date from input: {raw_input}")
+    _LOGGER.debug("Parsing date from input: %s", raw_input)
     return datetime.strptime(raw_input, "%Y-%m-%d").date()
 
 
@@ -48,7 +48,7 @@ def _get_bool(d, keys: list):
     if val == "off" or val == "0":
         return False
     if val is not None:
-        _LOGGER.warning(f"Unexpected boolean value: {val} for keys: {keys}")
+        _LOGGER.warning("Unexpected boolean value: %s for keys: %s", val, keys)
     return None
 
 def _get_int(d, keys: list):
