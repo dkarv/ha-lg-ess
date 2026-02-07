@@ -44,15 +44,16 @@ trap 'echo "Received termination signal, stopping..."; stop_ha; exit 0' INT TERM
 
 start_ha
 
-LAST=0
 inotifywait -m -r -e close_write,modify,create,delete --format '%w%f' "$WATCH_DIR" | while read -r file; do
-	now=$(date +%s)
-	if (( now - LAST < DEBOUNCE )); then
+	# ignore changes in Python bytecode caches
+	case "$file" in
+	*/__pycache__/*)
 		continue
-	fi
-	LAST=$now
+		;;
+	esac
 	echo "Change detected: $file -- restarting Home Assistant"
 	stop_ha
 	start_ha
+	sleep "$DEBOUNCE"
 done
 
