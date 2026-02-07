@@ -41,7 +41,6 @@ class EssNumber(EssEntity, CoordinatorEntity[SettingsCoordinator], NumberEntity)
     def __init__(self, ess: EssBase, key: str):
         """Initialize the EssNumber."""
         super().__init__(ess.settings_coordinator, ess.device_info, lambda d: _get_int(d, [key]), key)
-        self.entity_id = f"number.{DOMAIN}_{key}".lower()
         self._ess = ess
         self._key = key
         self._attr_native_min_value = 0
