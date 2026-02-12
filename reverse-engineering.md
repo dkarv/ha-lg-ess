@@ -5,6 +5,9 @@ Some unsorted thoughts how to reverse engineer the api. Replace 10.10.10.21 with
 ## Pages
 
 Pages found in the Android app, and pages linked from there. All with `[+]` were not checked yet.
+
+To view these, open e.g. view-source:https://<your lg ip>/system/index.html in your browser, ignore certificate warning, and save the result to send it to me.
+
 ```
 /system/index.html
 |- /system/energyOverview.html
