@@ -32,8 +32,10 @@ async def async_setup_entry(
     async_add_entities([
         EssSelect(base, "backup_setting", "backupmode", ["on", "simple", "off"]),
 
+
+
         # battery_care
-        EssSelect(base, "alg_setting", "alg_setting", ["battery_care", "fast_charge"], {"battery_care": "1", "fast_charge": "2"}),
+        EssSelect(base, "alg_setting", "alg_setting", ["battery_care", "fast_charge", "weather_forecast"], {"battery_care": "0", "fast_charge": "1", "weather_forecast": "2"}),
     ])
 
 class EssSelect(EssEntity, CoordinatorEntity[SettingsCoordinator], SelectEntity):
@@ -57,5 +59,7 @@ class EssSelect(EssEntity, CoordinatorEntity[SettingsCoordinator], SelectEntity)
         self.async_write_ha_state()
     
     async def async_select_option(self, option: str) -> None:
-        await self._ess.ess.set_batt_settings({self._set_key: self._set_val[option]})
+        dto = {self._set_key: self._set_val[option]}
+        _LOGGER.info("set_batt_settings %s", dto)
+        await self._ess.ess.set_batt_settings(dto)
         await self.coordinator.async_request_refresh()

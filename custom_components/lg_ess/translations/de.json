@@ -46,7 +46,8 @@
                 "name": "Algorithmus",
                 "state": {
                     "fast_charge": "Schnellladen",
-                    "battery_care": "Batteriepflege"
+                    "battery_care": "Batteriepflege",
+                    "weather_forecast": "Wettervorhersage"
                 }
             }
         },

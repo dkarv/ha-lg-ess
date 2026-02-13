@@ -66,9 +66,14 @@ class EssSwitch(EssEntity, CoordinatorEntity[SettingsCoordinator], SwitchEntity)
         self.async_write_ha_state()
 
     async def async_turn_on(self, **kwargs) -> None:
-        await self._ess.ess.set_batt_settings({self._set_key: self._set_val[0]})
+        dto = {self._set_key: self._set_val[0]}
+        _LOGGER.info("set_batt_settings %s", dto)
+        result = await self._ess.ess.set_batt_settings(dto)
+        _LOGGER.info("set_batt_settings result %s", result)
         await self.coordinator.async_request_refresh()
 
     async def async_turn_off(self, **kwargs) -> None:
-        await self._ess.ess.set_batt_settings({self._set_key: self._set_val[1]})
+        dto = {self._set_key: self._set_val[1]}
+        _LOGGER.info("set_batt_settings %s", dto)
+        await self._ess.ess.set_batt_settings(dto)
         await self.coordinator.async_request_refresh()
