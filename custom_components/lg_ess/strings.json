@@ -40,7 +40,8 @@
                 "name": "Algorithm",
                 "state": {
                     "fast_charge": "Fast Charge",
-                    "battery_care": "Battery Care"
+                    "battery_care": "Battery Care",
+                    "weather_forecast": "Weather Forecast"
                 }
             }
         },
