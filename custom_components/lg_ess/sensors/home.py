@@ -204,14 +204,14 @@ def get_home_sensors(
             "direction_is_discharging_to_grid_",
             icon=_DISCHARGING,
         ),
-        EssSensor(
-            home_coordinator,
-            device_info,
-            lambda d: _or(
-                lambda: _get(d, ["operation", "status"]),
-            ),
-            "operation_status",
-        ),
+#        EssSensor(
+#            home_coordinator,
+#            device_info,
+#            lambda d: _or(
+#                lambda: _get(d, ["operation", "status"]),
+#            ),
+#            "operation_status",
+#        ),
         MeasurementSensor(
             home_coordinator,
             device_info,
