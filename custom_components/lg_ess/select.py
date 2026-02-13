@@ -32,10 +32,9 @@ async def async_setup_entry(
     async_add_entities([
         EssSelect(base, "backup_setting", "backupmode", ["on", "simple", "off"]),
 
-
-
-        # battery_care
-        EssSelect(base, "alg_setting", "alg_setting", ["battery_care", "fast_charge", "weather_forecast"], {"battery_care": "0", "fast_charge": "1", "weather_forecast": "2"}),
+        EssSelect(base, "alg_setting", "alg_setting", 
+                  ["battery_care", "fast_charge", "weather_forecast"], 
+                  {"battery_care": "0", "fast_charge": "1", "weather_forecast": "2"}),
     ])
 
 class EssSelect(EssEntity, CoordinatorEntity[SettingsCoordinator], SelectEntity):

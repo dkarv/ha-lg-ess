@@ -29,7 +29,7 @@ class EssBase:
 
     async def close(self) -> None:
         """Close the API connection."""
-        await self.ess.close()
+        await self.ess.destruct()
 
     async def first_refresh(self) -> None:
         if self.common_coordinator.data is None:

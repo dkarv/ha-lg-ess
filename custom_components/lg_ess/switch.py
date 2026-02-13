@@ -14,7 +14,7 @@ from .sensors.util import _get_bool
 from .sensors.base import EssEntity
 
 from .const import DOMAIN
-from .coordinator import SettingsCoordinator
+from .coordinator import SettingsCoordinator, ESSCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -24,12 +24,20 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up switch entities from config entry and keep them synced via SettingsCoordinator."""
-    base = hass.data[DOMAIN][config_entry.entry_id]
+    base: EssBase = hass.data[DOMAIN][config_entry.entry_id]
     await base.first_refresh()
 
     async_add_entities([
-        EssSwitch(base, "winter_setting", "wintermode"),
-        EssSwitch(base, "auto_charge", "autocharge", ["1", "0"]),
+        EssSwitch(base, base.settings_coordinator, "winter_setting", 
+                  lambda d: _get_bool(d, ["winter_setting"]), 
+                  lambda ess, s: _set_bool(ess, s, "wintermode")),
+        EssSwitch(base, base.settings_coordinator, "auto_charge", 
+                  lambda d: _get_bool(d, ["auto_charge"]), 
+                  lambda ess, s: _set_bool(ess, s, "autocharge", ["1", "0"])),
+
+        EssSwitch(base, base.home_coordinator, "operation", 
+                  lambda d: _get_bool(d, ["operation", "status"]),
+                  _switch_operation),
 
         # TODO make DateEntity
         # Known values:
@@ -47,16 +55,15 @@ async def async_setup_entry(
         # EssSwitch(base, "enervu_upload"),
     ])
 
-class EssSwitch(EssEntity, CoordinatorEntity[SettingsCoordinator], SwitchEntity):
-    """Switch entity that reflects a setting from the SettingsCoordinator."""
+class EssSwitch(EssEntity, CoordinatorEntity[ESSCoordinator], SwitchEntity):
+    """Switch entity that reflects a setting from the ESSCoordinator."""
 
-    def __init__(self, ess: EssBase, key: str, set_key: str, set_val: list = ["on", "off"]):
+    def __init__(self, ess: EssBase, coordinator: ESSCoordinator, key: str, extractor, setter):
         """Initialize the EssSwitch."""
-        super().__init__(ess.settings_coordinator, ess.device_info, lambda d: _get_bool(d, [key]), key)
+        super().__init__(coordinator, ess.device_info, extractor, key)
+        self._setter = setter
         self._ess = ess
         self._key = key
-        self._set_key = set_key
-        self._set_val = set_val
         self._attr_is_on = self._extractor(self.coordinator.data)
     
     @callback
@@ -66,14 +73,21 @@ class EssSwitch(EssEntity, CoordinatorEntity[SettingsCoordinator], SwitchEntity)
         self.async_write_ha_state()
 
     async def async_turn_on(self, **kwargs) -> None:
-        dto = {self._set_key: self._set_val[0]}
-        _LOGGER.info("set_batt_settings %s", dto)
-        result = await self._ess.ess.set_batt_settings(dto)
-        _LOGGER.info("set_batt_settings result %s", result)
+        await self._setter(self._ess, True)
         await self.coordinator.async_request_refresh()
 
     async def async_turn_off(self, **kwargs) -> None:
-        dto = {self._set_key: self._set_val[1]}
-        _LOGGER.info("set_batt_settings %s", dto)
-        await self._ess.ess.set_batt_settings(dto)
+        await self._setter(self._ess, False)
         await self.coordinator.async_request_refresh()
+
+async def _set_bool(ess: EssBase, value: bool, key: str, set_val: list = ["on", "off"]):
+    dto = {key: set_val[1] if value else set_val[0]}
+    _LOGGER.info("set_batt_settings %s", dto)
+    await ess.ess.set_batt_settings(dto)
+
+async def _switch_operation(ess: EssBase, value: bool):
+    _LOGGER.info("Switching system operation to %s", "ON" if value else "OFF")
+    if value:
+        await ess.ess.switch_on()
+    else:
+        await ess.ess.switch_off()

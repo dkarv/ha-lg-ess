@@ -25,6 +25,9 @@
             },
             "auto_charge": {
                 "name": "Automatic Charging"
+            },
+            "operation": {
+                "name": "System Operation"
             }
         },
         "select": {

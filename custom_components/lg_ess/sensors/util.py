@@ -43,9 +43,9 @@ def _mul(op1, op2):
 
 def _get_bool(d, keys: list):
     val = _get(d, keys)
-    if val == "on" or val == "1":
+    if val == "on" or val == "1" or val == "start":
         return True
-    if val == "off" or val == "0":
+    if val == "off" or val == "0" or val == "stop":
         return False
     if val is not None:
         _LOGGER.warning("Unexpected boolean value: %s for keys: %s", val, keys)
