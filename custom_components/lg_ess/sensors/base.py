@@ -132,9 +132,11 @@ class MeasurementSensor(EssSensor):
         key: str,
         unit: str | None = None,
         icon: str | None = None,
+        device_class: SensorDeviceClass | None = None,
     ) -> None:
         """Initialize the sensor with the common coordinator."""
         super().__init__(coordinator, device_info, extractor, key, icon=icon, unit=unit)
+        self._attr_device_class = device_class
 
 
 class IncreasingSensor(EssSensor):

@@ -27,6 +27,9 @@ from homeassistant.const import (
     UnitOfPower,
 )
 from homeassistant.helpers.device_registry import DeviceInfo
+from homeassistant.components.sensor import (
+    SensorDeviceClass,
+)
 
 
 def get_home_sensors(
@@ -88,6 +91,7 @@ def get_home_sensors(
             "statistics_bat_user_soc",
             PERCENTAGE,
             icon=_BATTERYHALF,
+            device_class=SensorDeviceClass.BATTERY,
         ),
         MeasurementSensor(
             home_coordinator,
@@ -370,6 +374,7 @@ def get_home_sensors(
             ),
             "batt_directional",
             UnitOfPower.WATT,
+            device_class=SensorDeviceClass.POWER,
         ),
         MeasurementSensor(
             home_coordinator,
@@ -384,5 +389,6 @@ def get_home_sensors(
             ),
             "grid_directional",
             UnitOfPower.WATT,
+            device_class=SensorDeviceClass.POWER,
         ),
     ]
