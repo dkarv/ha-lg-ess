@@ -8,6 +8,9 @@ from homeassistant.const import (
     UnitOfEnergy,
     UnitOfPower,
 )
+from homeassistant.components.sensor import (
+    SensorDeviceClass,
+)
 
 
 def get_system_sensors(
@@ -78,6 +81,7 @@ def get_system_sensors(
             lambda d: _get(d, ["ess", 0, "batt_info", "charged_energy"]),
             "0_batt_charged",
             UnitOfEnergy.WATT_HOUR,
+            device_class=SensorDeviceClass.POWER,
         ),
         MeasurementSensor(
             system_coordinator,
@@ -85,6 +89,7 @@ def get_system_sensors(
             lambda d: _get(d, ["ess", 0, "batt_info", "discharged_energy"]),
             "0_batt_discharged",
             UnitOfEnergy.WATT_HOUR,
+            device_class=SensorDeviceClass.POWER,
         ),
         MeasurementSensor(
             system_coordinator,

@@ -1,4 +1,4 @@
-FROM homeassistant/home-assistant:2026.1
+FROM homeassistant/home-assistant:2026.6
 
 RUN apk add inotify-tools
 

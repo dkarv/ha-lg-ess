@@ -30,6 +30,9 @@ from homeassistant.const import (
     UnitOfFrequency,
     UnitOfPower,
 )
+from homeassistant.components.sensor import (
+    SensorDeviceClass,
+)
 
 
 def _sum_if_list(value):
@@ -59,6 +62,7 @@ def get_common_sensors(
             "BATT_dc_power",
             unit=UnitOfPower.WATT,
             icon=_BATTERYLOAD,
+            device_class=SensorDeviceClass.POWER,
         ),
         MeasurementSensor(
             common_coordinator,
@@ -69,6 +73,7 @@ def get_common_sensors(
             "LOAD_load_power",
             unit=UnitOfPower.WATT,
             icon=_LOAD,
+            device_class=SensorDeviceClass.POWER,
         ),
         MeasurementSensor(
             common_coordinator,
@@ -216,6 +221,7 @@ def get_common_sensors(
             "PV_pv1_voltage",
             UnitOfElectricPotential.VOLT,
             icon=_ONE,
+            device_class=SensorDeviceClass.VOLTAGE,
         ),
         MeasurementSensor(
             common_coordinator,
@@ -227,6 +233,7 @@ def get_common_sensors(
             "PV_pv2_voltage",
             UnitOfElectricPotential.VOLT,
             icon=_TWO,
+            device_class=SensorDeviceClass.VOLTAGE,
         ),
         MeasurementSensor(
             common_coordinator,
@@ -238,6 +245,7 @@ def get_common_sensors(
             "PV_pv3_voltage",
             UnitOfElectricPotential.VOLT,
             icon=_THREE,
+            device_class=SensorDeviceClass.VOLTAGE,
         ),
         MeasurementSensor(
             common_coordinator,
@@ -249,6 +257,7 @@ def get_common_sensors(
             "PV_pv1_power",
             UnitOfPower.WATT,
             icon=_ONE,
+            device_class=SensorDeviceClass.POWER,
         ),
         MeasurementSensor(
             common_coordinator,
@@ -260,6 +269,7 @@ def get_common_sensors(
             "PV_pv2_power",
             UnitOfPower.WATT,
             icon=_TWO,
+            device_class=SensorDeviceClass.POWER,
         ),
         MeasurementSensor(
             common_coordinator,
@@ -271,6 +281,7 @@ def get_common_sensors(
             "PV_pv3_power",
             UnitOfPower.WATT,
             icon=_THREE,
+            device_class=SensorDeviceClass.POWER,
         ),
         MeasurementSensor(
             common_coordinator,
@@ -282,6 +293,7 @@ def get_common_sensors(
             "PV_pv1_current",
             UnitOfElectricCurrent.AMPERE,
             icon=_ONE,
+            device_class=SensorDeviceClass.CURRENT,
         ),
         MeasurementSensor(
             common_coordinator,
@@ -293,6 +305,7 @@ def get_common_sensors(
             "PV_pv2_current",
             UnitOfElectricCurrent.AMPERE,
             icon=_TWO,
+            device_class=SensorDeviceClass.CURRENT,
         ),
         MeasurementSensor(
             common_coordinator,
@@ -304,6 +317,7 @@ def get_common_sensors(
             "PV_pv3_current",
             UnitOfElectricCurrent.AMPERE,
             icon=_THREE,
+            device_class=SensorDeviceClass.CURRENT,
         ),
         IncreasingSensor(
             common_coordinator,
@@ -402,6 +416,7 @@ def get_common_sensors(
             "GRID_active_power",
             UnitOfPower.WATT,
             icon=_FROMGRID,
+            device_class=SensorDeviceClass.POWER,
         ),
         MeasurementSensor(
             common_coordinator,
