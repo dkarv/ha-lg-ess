@@ -1,0 +1,232 @@
+{
+    "m_timeFrom": "20261001000000",
+    "m_timeTo": "20261031214500",
+    "db": "success",
+    "loginfo": [
+        {
+            "db": "0",
+            "time": "20261001000000",
+            "total_consumption": "13636",
+            "total_purchase": "117",
+            "consumption": "13636",
+            "purchase": "117",
+            "self_suffi": "99.14198"
+        },
+        {
+            "db": "1",
+            "time": "20261002000000",
+            "total_consumption": "29045",
+            "total_purchase": "327",
+            "consumption": "15409",
+            "purchase": "210",
+            "self_suffi": "98.63716"
+        },
+        {
+            "db": "2",
+            "time": "20261003000000",
+            "total_consumption": "43943",
+            "total_purchase": "3205",
+            "consumption": "14898",
+            "purchase": "2878",
+            "self_suffi": "80.68198"
+        },
+        {
+            "db": "3",
+            "time": "20261004000000",
+            "total_consumption": "62219",
+            "total_purchase": "3801",
+            "consumption": "18276",
+            "purchase": "596",
+            "self_suffi": "96.73889"
+        },
+        {
+            "db": "4",
+            "time": "20261005000000",
+            "total_consumption": "74211",
+            "total_purchase": "3874",
+            "consumption": "11992",
+            "purchase": "73",
+            "self_suffi": "99.39127"
+        },
+        {
+            "db": "5",
+            "time": "20261006000000",
+            "total_consumption": "85469",
+            "total_purchase": "3959",
+            "consumption": "11258",
+            "purchase": "85",
+            "self_suffi": "99.24498"
+        },
+        {
+            "db": "6",
+            "time": "20261007000000",
+            "total_consumption": "98065",
+            "total_purchase": "4034",
+            "consumption": "12596",
+            "purchase": "75",
+            "self_suffi": "99.40457"
+        },
+        {
+            "db": "7",
+            "time": "20261008000000",
+            "total_consumption": "116659",
+            "total_purchase": "4254",
+            "consumption": "18594",
+            "purchase": "220",
+            "self_suffi": "98.81683"
+        },
+        {
+            "db": "8",
+            "time": "20261009000000",
+            "total_consumption": "130164",
+            "total_purchase": "5818",
+            "consumption": "13505",
+            "purchase": "1564",
+            "self_suffi": "88.41911"
+        },
+        {
+            "db": "9",
+            "time": "20261010000000",
+            "total_consumption": "146137",
+            "total_purchase": "6888",
+            "consumption": "15973",
+            "purchase": "1070",
+            "self_suffi": "93.30119"
+        },
+        {
+            "db": "10",
+            "time": "20261011000000",
+            "total_consumption": "162390",
+            "total_purchase": "10554",
+            "consumption": "16253",
+            "purchase": "3666",
+            "self_suffi": "77.44417"
+        },
+        {
+            "db": "11",
+            "time": "20261012000000",
+            "total_consumption": "175191",
+            "total_purchase": "10717",
+            "consumption": "12801",
+            "purchase": "163",
+            "self_suffi": "98.72666"
+        },
+        {
+            "db": "12",
+            "time": "20261013000000",
+            "total_consumption": "185436",
+            "total_purchase": "10791",
+            "consumption": "10245",
+            "purchase": "74",
+            "self_suffi": "99.2777"
+        },
+        {
+            "db": "13",
+            "time": "20261014000000",
+            "total_consumption": "198542",
+            "total_purchase": "10999",
+            "consumption": "13106",
+            "purchase": "208",
+            "self_suffi": "98.41294"
+        },
+        {
+            "db": "14",
+            "time": "20261015000000",
+            "total_consumption": "213763",
+            "total_purchase": "11137",
+            "consumption": "15221",
+            "purchase": "138",
+            "self_suffi": "99.09336"
+        },
+        {
+            "db": "15",
+            "time": "20261016000000",
+            "total_consumption": "228005",
+            "total_purchase": "11256",
+            "consumption": "14242",
+            "purchase": "119",
+            "self_suffi": "99.16444"
+        },
+        {
+            "db": "16",
+            "time": "20261017000000",
+            "total_consumption": "242037",
+            "total_purchase": "11445",
+            "consumption": "14032",
+            "purchase": "189",
+            "self_suffi": "98.65308"
+        },
+        {
+            "db": "17",
+            "time": "20261018000000",
+            "total_consumption": "264761",
+            "total_purchase": "22450",
+            "consumption": "22724",
+            "purchase": "11005",
+            "self_suffi": "51.57102"
+        },
+        {
+            "db": "18",
+            "time": "20261019000000",
+            "total_consumption": "277842",
+            "total_purchase": "27476",
+            "consumption": "13081",
+            "purchase": "5026",
+            "self_suffi": "61.57786"
+        },
+        {
+            "db": "19",
+            "time": "20261020000000",
+            "total_consumption": "292413",
+            "total_purchase": "27933",
+            "consumption": "14571",
+            "purchase": "457",
+            "self_suffi": "96.86363"
+        },
+        {
+            "db": "20",
+            "time": "20261021000000",
+            "total_consumption": "307840",
+            "total_purchase": "37672",
+            "consumption": "15427",
+            "purchase": "9739",
+            "self_suffi": "36.87042"
+        },
+        {
+            "db": "21",
+            "time": "20261022000000",
+            "total_consumption": "321970",
+            "total_purchase": "43253",
+            "consumption": "14130",
+            "purchase": "5581",
+            "self_suffi": "60.50248"
+        },
+        {
+            "db": "22",
+            "time": "20261023000000",
+            "total_consumption": "340076",
+            "total_purchase": "43469",
+            "consumption": "18106",
+            "purchase": "216",
+            "self_suffi": "98.80702"
+        },
+        {
+            "db": "23",
+            "time": "20261024000000",
+            "total_consumption": "361268",
+            "total_purchase": "48345",
+            "consumption": "21192",
+            "purchase": "4876",
+            "self_suffi": "76.99132"
+        },
+        {
+            "db": "25",
+            "time": "20261025000000",
+            "total_consumption": "372408",
+            "total_purchase": "53064",
+            "consumption": "11140",
+            "purchase": "4719",
+            "self_suffi": "41.17647"
+        }
+    ]
+}

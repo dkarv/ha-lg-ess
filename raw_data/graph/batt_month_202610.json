@@ -1,0 +1,207 @@
+{
+    "m_timeFrom": "20261001000000",
+    "m_timeTo": "20261031214500",
+    "db": "success",
+    "loginfo": [
+        {
+            "db": "0",
+            "time": "20261001000000",
+            "total_charge": "8087",
+            "total_discharge": "7596",
+            "charge": "8087",
+            "discharge": "7596"
+        },
+        {
+            "db": "1",
+            "time": "20261002000000",
+            "total_charge": "12394",
+            "total_discharge": "19265",
+            "charge": "4307",
+            "discharge": "11669"
+        },
+        {
+            "db": "2",
+            "time": "20261003000000",
+            "total_charge": "23929",
+            "total_discharge": "26498",
+            "charge": "11535",
+            "discharge": "7233"
+        },
+        {
+            "db": "3",
+            "time": "20261004000000",
+            "total_charge": "37374",
+            "total_discharge": "34940",
+            "charge": "13445",
+            "discharge": "8442"
+        },
+        {
+            "db": "4",
+            "time": "20261005000000",
+            "total_charge": "47266",
+            "total_discharge": "41345",
+            "charge": "9892",
+            "discharge": "6405"
+        },
+        {
+            "db": "5",
+            "time": "20261006000000",
+            "total_charge": "54365",
+            "total_discharge": "47837",
+            "charge": "7099",
+            "discharge": "6492"
+        },
+        {
+            "db": "6",
+            "time": "20261007000000",
+            "total_charge": "61680",
+            "total_discharge": "54564",
+            "charge": "7315",
+            "discharge": "6727"
+        },
+        {
+            "db": "7",
+            "time": "20261008000000",
+            "total_charge": "68649",
+            "total_discharge": "66366",
+            "charge": "6969",
+            "discharge": "11802"
+        },
+        {
+            "db": "8",
+            "time": "20261009000000",
+            "total_charge": "83033",
+            "total_discharge": "74463",
+            "charge": "14384",
+            "discharge": "8097"
+        },
+        {
+            "db": "9",
+            "time": "20261010000000",
+            "total_charge": "86496",
+            "total_discharge": "85182",
+            "charge": "3463",
+            "discharge": "10719"
+        },
+        {
+            "db": "10",
+            "time": "20261011000000",
+            "total_charge": "100401",
+            "total_discharge": "91973",
+            "charge": "13905",
+            "discharge": "6791"
+        },
+        {
+            "db": "11",
+            "time": "20261012000000",
+            "total_charge": "113075",
+            "total_discharge": "100740",
+            "charge": "12674",
+            "discharge": "8767"
+        },
+        {
+            "db": "12",
+            "time": "20261013000000",
+            "total_charge": "122206",
+            "total_discharge": "108621",
+            "charge": "9131",
+            "discharge": "7881"
+        },
+        {
+            "db": "13",
+            "time": "20261014000000",
+            "total_charge": "131663",
+            "total_discharge": "118518",
+            "charge": "9457",
+            "discharge": "9897"
+        },
+        {
+            "db": "14",
+            "time": "20261015000000",
+            "total_charge": "142864",
+            "total_discharge": "127679",
+            "charge": "11201",
+            "discharge": "9161"
+        },
+        {
+            "db": "15",
+            "time": "20261016000000",
+            "total_charge": "152308",
+            "total_discharge": "135108",
+            "charge": "9444",
+            "discharge": "7429"
+        },
+        {
+            "db": "16",
+            "time": "20261017000000",
+            "total_charge": "157229",
+            "total_discharge": "145646",
+            "charge": "4921",
+            "discharge": "10538"
+        },
+        {
+            "db": "17",
+            "time": "20261018000000",
+            "total_charge": "160108",
+            "total_discharge": "150591",
+            "charge": "2879",
+            "discharge": "4945"
+        },
+        {
+            "db": "18",
+            "time": "20261019000000",
+            "total_charge": "171767",
+            "total_discharge": "155398",
+            "charge": "11659",
+            "discharge": "4807"
+        },
+        {
+            "db": "19",
+            "time": "20261020000000",
+            "total_charge": "179554",
+            "total_discharge": "166469",
+            "charge": "7787",
+            "discharge": "11071"
+        },
+        {
+            "db": "20",
+            "time": "20261021000000",
+            "total_charge": "182047",
+            "total_discharge": "169347",
+            "charge": "2493",
+            "discharge": "2878"
+        },
+        {
+            "db": "21",
+            "time": "20261022000000",
+            "total_charge": "195638",
+            "total_discharge": "172736",
+            "charge": "13591",
+            "discharge": "3389"
+        },
+        {
+            "db": "22",
+            "time": "20261023000000",
+            "total_charge": "201258",
+            "total_discharge": "184566",
+            "charge": "5620",
+            "discharge": "11830"
+        },
+        {
+            "db": "23",
+            "time": "20261024000000",
+            "total_charge": "213806",
+            "total_discharge": "193477",
+            "charge": "12548",
+            "discharge": "8911"
+        },
+        {
+            "db": "25",
+            "time": "20261025000000",
+            "total_charge": "215098",
+            "total_discharge": "197230",
+            "charge": "1292",
+            "discharge": "3753"
+        }
+    ]
+}
