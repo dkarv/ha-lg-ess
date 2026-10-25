@@ -10,10 +10,27 @@
         },
         "step": {
             "user": {
+                "description": "Das Gerätepasswort ist **nicht** das Passwort deines LG-Kontos. Meistens ist es die MAC-Adresse der LAN-Schnittstelle des Geräts in Kleinbuchstaben ohne Doppelpunkte (z.B. AA:BB:CC:DD:11:22 → aabbccdd1122). Weitere Möglichkeiten, es herauszufinden, stehen in der [Dokumentation]({docs_url}).",
                 "data": {
                     "host": "Host",
                     "password": "Passwort",
                     "username": "Nutzername"
+                },
+                "data_description": {
+                    "host": "IP-Adresse oder Hostname des LG ESS Geräts.",
+                    "password": "Lokales Gerätepasswort (LAN-MAC-Adresse in Kleinbuchstaben ohne Doppelpunkte), nicht das LG-Kontopasswort."
+                }
+            },
+            "reconfigure": {
+                "description": "Das Gerätepasswort ist **nicht** das Passwort deines LG-Kontos. Meistens ist es die MAC-Adresse der LAN-Schnittstelle des Geräts in Kleinbuchstaben ohne Doppelpunkte (z.B. AA:BB:CC:DD:11:22 → aabbccdd1122). Weitere Möglichkeiten, es herauszufinden, stehen in der [Dokumentation]({docs_url}).",
+                "data": {
+                    "host": "Host",
+                    "password": "Passwort",
+                    "username": "Nutzername"
+                },
+                "data_description": {
+                    "host": "IP-Adresse oder Hostname des LG ESS Geräts.",
+                    "password": "Lokales Gerätepasswort (LAN-MAC-Adresse in Kleinbuchstaben ohne Doppelpunkte), nicht das LG-Kontopasswort."
                 }
             }
         }
