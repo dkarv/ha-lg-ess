@@ -56,3 +56,11 @@ def _get_int(d, keys: list):
     if val is not None:
         return int(val)
     return None
+
+def _get_graph_total(d, device: str, *keys: str):
+    """Get a month total from the graph data, which may be formatted like "1.105109e+07"."""
+    for key in keys:
+        val = _get(d, ["GRAPH", device, key])
+        if val is not None:
+            return int(float(val))
+    return None

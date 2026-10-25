@@ -20,7 +20,7 @@ from .base import (
 )
 from .base import MeasurementSensor
 from .base import IncreasingEnergySensor
-from .util import _get, _or
+from .util import _get, _get_graph_total, _or
 from ..coordinator import CommonCoordinator
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.const import (
@@ -106,6 +106,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
+                lambda: _get_graph_total(d, "batt", "total_discharge"),
                 lambda: _get(d, ["BATT", "month_batt_discharge_energy"]),
             ),
             "BATT_month_batt_discharge_energy",
@@ -115,6 +116,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
+                lambda: _get_graph_total(d, "batt", "total_charge"),
                 lambda: _get(d, ["BATT", "month_batt_charge_energy"]),
             ),
             "BATT_month_batt_charge_energy",
@@ -151,6 +153,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
+                lambda: _get_graph_total(d, "load", "total_consumption"),
                 lambda: _get(d, ["LOAD", "month_load_consumption_sum"]),
             ),
             "LOAD_month_load_consumption_sum",
@@ -160,6 +163,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
+                lambda: _get_graph_total(d, "pv", "total_pv_direct_consumption_energy"),
                 lambda: _get(
                     d, ["LOAD", "month_pv_direct_consumption_energy"]),
             ),
@@ -170,6 +174,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
+                lambda: _get_graph_total(d, "load", "total_purchase"),
                 lambda: _get(d, ["LOAD", "month_grid_power_purchase_energy"]),
             ),
             "LOAD_month_grid_power_purchase_energy",
@@ -197,6 +202,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
+                lambda: _get_graph_total(d, "pv", "total_generation"),
                 lambda: _get(d, ["PCS", "month_pv_generation_sum"]),
             ),
             "PCS_month_pv_generation_sum",
@@ -206,6 +212,7 @@ def get_common_sensors(
             common_coordinator,
             device_info,
             lambda d: _or(
+                lambda: _get_graph_total(d, "pv", "total_feed_in", "total_Feed_in"),
                 lambda: _get(d, ["PCS", "month_grid_feed_in_energy"]),
             ),
             "PCS_month_grid_feed_in_energy",
