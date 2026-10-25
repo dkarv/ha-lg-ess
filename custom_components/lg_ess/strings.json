@@ -10,10 +10,27 @@
         },
         "step": {
             "user": {
+                "description": "The device password is **not** your LG account password. It is usually the MAC address of the device's LAN interface in lowercase without colons (e.g. AA:BB:CC:DD:11:22 → aabbccdd1122). See the [documentation]({docs_url}) for other ways to get it.",
                 "data": {
                     "host": "[%key:common::config_flow::data::host%]",
                     "password": "[%key:common::config_flow::data::password%]",
                     "username": "[%key:common::config_flow::data::username%]"
+                },
+                "data_description": {
+                    "host": "IP address or hostname of the LG ESS device.",
+                    "password": "Local device password (lowercase LAN MAC address without colons), not the LG account password."
+                }
+            },
+            "reconfigure": {
+                "description": "The device password is **not** your LG account password. It is usually the MAC address of the device's LAN interface in lowercase without colons (e.g. AA:BB:CC:DD:11:22 → aabbccdd1122). See the [documentation]({docs_url}) for other ways to get it.",
+                "data": {
+                    "host": "[%key:common::config_flow::data::host%]",
+                    "password": "[%key:common::config_flow::data::password%]",
+                    "username": "[%key:common::config_flow::data::username%]"
+                },
+                "data_description": {
+                    "host": "IP address or hostname of the LG ESS device.",
+                    "password": "Local device password (lowercase LAN MAC address without colons), not the LG account password."
                 }
             }
         }

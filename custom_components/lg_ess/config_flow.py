@@ -16,6 +16,10 @@ from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
+DESCRIPTION_PLACEHOLDERS = {
+    "docs_url": "https://github.com/dkarv/ha-lg-ess#setup",
+}
+
 
 def _ess_schema(
     host: str | None = None,
@@ -79,6 +83,7 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             step_id="user",
             data_schema=self.discovery_schema or _ess_schema(),
             errors=errors,
+            description_placeholders=DESCRIPTION_PLACEHOLDERS,
         )
 
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None):
@@ -110,6 +115,7 @@ class EssConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 pw=current.data[CONF_PASSWORD],
             ),
             errors=errors,
+            description_placeholders=DESCRIPTION_PLACEHOLDERS,
         )
 
     async def async_step_zeroconf(
