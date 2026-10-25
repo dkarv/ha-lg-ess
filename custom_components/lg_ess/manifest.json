@@ -4,6 +4,7 @@
   "codeowners": ["@dkarv"],
   "config_flow": true,
   "dependencies": [],
+  "after_dependencies": ["recorder"],
   "documentation": "https://github.com/dkarv/ha-lg-ess/blob/main/README.md",
   "homekit": {},
   "integration_type": "device",
@@ -11,6 +12,6 @@
   "issue_tracker": "https://github.com/dkarv/ha-lg-ess/issues",
   "requirements": ["pyess==0.1.15"],
   "ssdp": [],
-  "version": "0.5.2",
+  "version": "0.5.3",
   "zeroconf": ["_pmsctrl._tcp.local."]
 }

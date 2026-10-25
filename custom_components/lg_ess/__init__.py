@@ -9,10 +9,12 @@ from homeassistant.const import CONF_HOST, CONF_PASSWORD, Platform
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.entity_registry import async_migrate_entries
+from homeassistant.helpers.event import async_track_utc_time_change
 from homeassistant.helpers import entity_registry as er
 from .ess import EssBase
 
 from .const import DOMAIN
+from .statistics_repair import async_repair_statistics
 
 _LOGGER = logging.getLogger(__name__)
 PLATFORMS: list[Platform] = [Platform.SENSOR, Platform.SWITCH, Platform.NUMBER, Platform.SELECT]
@@ -33,6 +35,18 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         raise ConfigEntryNotReady from e
 
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+
+    # Check again every hour, after the recorder compiled the statistics of the last hour
+    serial = base.device_info["serial_number"]
+
+    @callback
+    def repair_statistics(_now=None) -> None:
+        entry.async_create_background_task(
+            hass, async_repair_statistics(hass, serial), "lg_ess repair statistics"
+        )
+
+    repair_statistics()
+    entry.async_on_unload(async_track_utc_time_change(hass, repair_statistics, minute=12, second=0))
 
     return True
 

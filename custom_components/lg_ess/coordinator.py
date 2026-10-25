@@ -98,9 +98,9 @@ class CommonCoordinator(ESSCoordinator):
             try:
                 self._graph = await fetch_month_graph(self._ess, now)
             except (ESSException, ClientError, KeyError, ValueError) as e:
-                # Sensors fall back to the month_* counters of the common data
+                # Keep the last graph data, falling back to the reset month_* counters would count the
+                # month total twice once the graph is available again
                 _LOGGER.warning("Could not fetch month graph data: %s", e)
-                self._graph = None
             _LOGGER.debug("Month graph data: %s", self._graph)
         data["GRAPH"] = self._graph
         return data
