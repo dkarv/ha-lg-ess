@@ -33,7 +33,7 @@ async def async_setup_entry(
                   lambda ess, s: _set_bool(ess, s, "wintermode")),
         EssSwitch(base, base.settings_coordinator, "auto_charge", 
                   lambda d: _get_bool(d, ["auto_charge"]), 
-                  lambda ess, s: _set_bool(ess, s, "autocharge", ["1", "0"])),
+                  lambda ess, s: _set_bool(ess, s, "autocharge", ("1", "0"))),
 
         EssSwitch(base, base.home_coordinator, "operation", 
                   lambda d: _get_bool(d, ["operation", "status"]),
@@ -80,8 +80,9 @@ class EssSwitch(EssEntity, CoordinatorEntity[ESSCoordinator], SwitchEntity):
         await self._setter(self._ess, False)
         await self.coordinator.async_request_refresh()
 
-async def _set_bool(ess: EssBase, value: bool, key: str, set_val: list = ["on", "off"]):
-    dto = {key: set_val[1] if value else set_val[0]}
+async def _set_bool(ess: EssBase, value: bool, key: str, set_val: tuple[str, str] = ("on", "off")):
+    """Write a boolean setting, set_val holds the (on, off) values the device expects."""
+    dto = {key: set_val[0] if value else set_val[1]}
     _LOGGER.info("set_batt_settings %s", dto)
     await ess.ess.set_batt_settings(dto)
 
