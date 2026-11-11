@@ -3,7 +3,7 @@ import os
 import pytest
 from mock import Mock
 
-from custom_components.lg_ess.switch import EssSwitch
+from custom_components.lg_ess.switch import EssSwitch, _set_bool
 from custom_components.lg_ess.sensors.util import _get_bool
 from .utils import mock_device_info
 
@@ -57,3 +57,24 @@ async def test_settings_switches(data, mock_device_info):
         # exercise toggles (should not raise)
         await s.async_turn_on()
         await s.async_turn_off()
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    ("value", "set_val", "expected"),
+    [
+        (True, ("on", "off"), "on"),
+        (False, ("on", "off"), "off"),
+        (True, ("1", "0"), "1"),
+        (False, ("1", "0"), "0"),
+    ],
+)
+async def test_set_bool_sends_matching_value(value, set_val, expected):
+    base = Mock()
+    sent = []
+
+    async def _set_batt_settings(payload):
+        sent.append(payload)
+
+    base.ess.set_batt_settings = _set_batt_settings
+    await _set_bool(base, value, "key", set_val)
+    assert sent == [{"key": expected}]
