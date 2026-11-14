@@ -11,6 +11,7 @@
 	"appPort": [
 		8123
 	],
+	"initializeCommand": "mkdir -p dev/.config/themes && touch dev/.config/automations.yaml dev/.config/scripts.yaml dev/.config/scenes.yaml",
 	"postCreateCommand": "dev/bootstrap.sh",
 	"overrideCommand": false,
 	"mounts": [
