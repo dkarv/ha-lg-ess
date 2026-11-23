@@ -1,19 +1,14 @@
 # ha-lg-ess
-HomeAssistant HACS integration for the LG ESS inverter.
+Home Assistant integration for the LG ESS inverter.
 Built with the Python library https://github.com/gluap/pyess (thanks!).
 
 This integration is using a local-only API of LG, no cloud needed. All devices that can be used with the *LG EnerVu Plus* should be compatible. This includes many LG Home inverters.
 
 ## Installation
 
+Install the integration via the **Home Assistant Marketplace** (Home Assistant 2026.11 or newer):
 
-Add _dkarv/ha-lg-ess_ as custom repository in HACS (click the three dots on the top right).
-
-Then search for the integration or use the button below to install it:
-
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=dkarv&repository=ha-lg-ess)
-
-
+[![Open your Home Assistant instance and open this repository in the Marketplace.](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=dkarv&repository=ha-lg-ess&category=integration)
 
 ## Setup
 
