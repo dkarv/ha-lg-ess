@@ -1,5 +1,8 @@
-homeassistant
+homeassistant==2026.11.2
+mock==5.2.0
+pytest==9.2.0
+pytest-asyncio==1.5.0
+
+# Runtime deps, versions come from custom_components/lg_ess/manifest.json
+# (installed from there before this file in CI).
 pyess
-mock
-pytest
-pytest-asyncio
